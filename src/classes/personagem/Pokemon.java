@@ -16,4 +16,46 @@ public abstract class Pokemon {
         this.nivel = nivel;
         this.hp = hp;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public List<String> getAtaques() {
+        return ataques;
+    }
+
+    public void setAtaques(List<String> ataques) {
+        this.ataques = ataques;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    
 }
