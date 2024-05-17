@@ -1,4 +1,6 @@
-package Classes;
+package classes.personagem;
+
+import classes.cenario.Objetos;
 
 public class Npc extends Objetos {
 

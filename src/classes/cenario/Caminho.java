@@ -1,12 +1,12 @@
-package Classes;
+package classes.cenario;
 
-public class Grama extends Objetos {
+public class Caminho extends Objetos{
 
     private String sprite;
 
-    public Grama(int posx, int posy) {
+    public Caminho(int posx, int posy) {
         super(posx, posy, true);
-        this.sprite = "🌾";
+        this.sprite = "⬛";
     }
 
     @Override

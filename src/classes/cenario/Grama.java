@@ -1,12 +1,12 @@
-package Classes;
+package classes;
 
-public class Caminho extends Objetos{
+public class Grama extends Objetos {
 
     private String sprite;
 
-    public Caminho(int posx, int posy) {
+    public Grama(int posx, int posy) {
         super(posx, posy, true);
-        this.sprite = "⬛";
+        this.sprite = "🌾";
     }
 
     @Override
