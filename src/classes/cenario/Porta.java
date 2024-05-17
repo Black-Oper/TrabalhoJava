@@ -1,4 +1,4 @@
-package classes;
+package classes.cenario;
 
 public class Porta extends Objetos{
 

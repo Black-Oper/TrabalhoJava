@@ -1,11 +1,10 @@
-import classes.Caminho;
-import classes.Chao;
-import classes.Objetos;
-import classes.Parede;
-import classes.Porta;
+import classes.cenario.Caminho;
+import classes.cenario.Chao;
+import classes.cenario.Elemento;
+import classes.cenario.Grama;
+import classes.cenario.Parede;
+import classes.cenario.Porta;
 import classes.personagem.Jogador;
-import classes.Elemento;
-import classes.Grama;
 
 public class Tabuleiro {
 
@@ -22,7 +21,7 @@ public class Tabuleiro {
         for (int i = 0; i < tabuleiro.length; i++) {
             for (int j = 0; j < tabuleiro[i].length; j++) {
                 if (i < 5 || i >= tabuleiro.length - 5 || j < 5 || j >= tabuleiro[i].length - 5) {
-                    tabuleiro[i][j] = new classes.Parede(i, j, "🍀");
+                    tabuleiro[i][j] = new classes.cenario.Parede(i, j, "🍀");
                 }
             }
         }
@@ -30,14 +29,14 @@ public class Tabuleiro {
         // preencher da coordenada [34][0] ate [38][99] com parede
         for (int i = 34; i < 39; i++) {
             for (int j = 0; j < tabuleiro[i].length; j++) {
-                tabuleiro[i][j] = new classes.Parede(i, j, "🍀");
+                tabuleiro[i][j] = new classes.cenario.Parede(i, j, "🍀");
             }
         }
 
         // preencher da coordenada [0][0] ate [33][99] com parede
         for (int i = 0; i < 34; i++) {
             for (int j = 0; j < tabuleiro[i].length; j++) {
-                tabuleiro[i][j] = new classes.Parede(i, j, "⬛");
+                tabuleiro[i][j] = new classes.cenario.Parede(i, j, "⬛");
             }
         }
 

@@ -1,4 +1,4 @@
-package classes.personagem;
+package classes.pokemon;
 
 import java.util.List;
 
@@ -7,13 +7,15 @@ public abstract class Pokemon {
     private String tipo;
     private List<String> ataques;
     private int nivel;
+    private int velocidade;
     private int hp;
 
-    public Pokemon(String nome, String tipo, List<String> ataques, int nivel, int hp) {
+    public Pokemon(String nome, String tipo, List<String> ataques, int nivel, int velocidade, int hp) {
         this.nome = nome;
         this.tipo = tipo;
         this.ataques = ataques;
         this.nivel = nivel;
+        this.velocidade = velocidade;
         this.hp = hp;
     }
 

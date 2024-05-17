@@ -1,4 +1,4 @@
-package classes;
+package classes.cenario;
 
 public abstract class Objetos extends Elemento{
 
