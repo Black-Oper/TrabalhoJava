@@ -1,4 +1,4 @@
-package Classes;
+package classes;
 
 public class Parede extends Objetos{
     private String sprite;

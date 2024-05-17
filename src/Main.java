@@ -1,7 +1,7 @@
 import java.util.*;
 
-import Classes.Jogador;
-import Classes.Porta;
+import classes.cenario.Porta;
+import classes.personagem.Jogador;
 
 public class Main {
 
@@ -21,12 +21,13 @@ public class Main {
 
         Scanner leitor = new Scanner(System.in);
 
+        
         Tabuleiro tabuleiro = new Tabuleiro();
-
+        
         Jogador jogador = new Jogador(6, 7);
-
+        
         Tabuleiro originalTabuleiro = new Tabuleiro();
-
+        
         for (int i = 0; i < tabuleiro.tabuleiro.length; i++) {
             for (int j = 0; j < tabuleiro.tabuleiro[i].length; j++) {
                 originalTabuleiro.tabuleiro[i][j] = tabuleiro.tabuleiro[i][j];
@@ -34,57 +35,57 @@ public class Main {
         }
         
         tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy()] = jogador;
-
+        
         do {
             clearScreen();
             tabuleiro.imprimirTabuleiro(jogador);
-
+            
             System.out.println("Digite a direção que deseja mover o jogador: ");
             String direcao = leitor.nextLine();
-
+            
             switch (direcao) {
                 case "w":
-                    if (tabuleiro.tabuleiro[jogador.getPosx() - 1][jogador.getPosy()].isAndavel()) {
-                        jogador.setPosx(jogador.getPosx() - 1);
+                if (tabuleiro.tabuleiro[jogador.getPosx() - 1][jogador.getPosy()].isAndavel()) {
+                    jogador.setPosx(jogador.getPosx() - 1);
+                }
+                // se colidir com alguma porta ir para o lugar da porta
+                for (Porta porta : portas) {
+                    if (jogador.getPosx() == porta.getPosx() && jogador.getPosy() == porta.getPosy()) {
+                        jogador.setPosx(porta.getJposx());
+                        jogador.setPosy(porta.getJposy());
                     }
-                    // se colidir com alguma porta ir para o lugar da porta
-                    for (Porta porta : portas) {
-                        if (jogador.getPosx() == porta.getPosx() && jogador.getPosy() == porta.getPosy()) {
-                            jogador.setPosx(porta.getJposx());
-                            jogador.setPosy(porta.getJposy());
-                        }
-                    }
-                    break;
+                }
+                break;
                 case "s":
-                    if (tabuleiro.tabuleiro[jogador.getPosx() + 1][jogador.getPosy()].isAndavel()) {
-                        jogador.setPosx(jogador.getPosx() + 1);
+                if (tabuleiro.tabuleiro[jogador.getPosx() + 1][jogador.getPosy()].isAndavel()) {
+                    jogador.setPosx(jogador.getPosx() + 1);
+                }
+                for (Porta porta : portas) {
+                    if (jogador.getPosx() == porta.getPosx() && jogador.getPosy() == porta.getPosy()) {
+                        jogador.setPosx(porta.getJposx());
+                        jogador.setPosy(porta.getJposy());
                     }
-                    for (Porta porta : portas) {
-                        if (jogador.getPosx() == porta.getPosx() && jogador.getPosy() == porta.getPosy()) {
-                            jogador.setPosx(porta.getJposx());
-                            jogador.setPosy(porta.getJposy());
-                        }
-                    }
-                    break;
+                }
+                break;
                 case "a":
-                    if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() - 1].isAndavel()) {
-                        jogador.setPosy(jogador.getPosy() - 1);
-                    }
-                    break;
+                if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() - 1].isAndavel()) {
+                    jogador.setPosy(jogador.getPosy() - 1);
+                }
+                break;
                 case "d":
-                    if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() + 1].isAndavel()) {
-                        jogador.setPosy(jogador.getPosy() + 1);
-                    }
-                    break;
+                if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() + 1].isAndavel()) {
+                    jogador.setPosy(jogador.getPosy() + 1);
+                }
+                break;
             }
-
+            
             for (int i = 0; i < originalTabuleiro.tabuleiro.length; i++) {
                 for (int j = 0; j < originalTabuleiro.tabuleiro[i].length; j++) {
                     tabuleiro.tabuleiro[i][j] = originalTabuleiro.tabuleiro[i][j];
                 }
             }
             tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy()] = jogador;
-
+            
         } while (true);
     }
 }

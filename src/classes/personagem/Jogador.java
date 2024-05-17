@@ -1,4 +1,4 @@
-package Classes;
+package classes.personagem;
 
 public class Jogador extends Personagem{
 

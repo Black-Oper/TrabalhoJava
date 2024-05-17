@@ -1,4 +1,6 @@
-package Classes;
+package classes.personagem;
+
+import classes.cenario.Elemento;
 
 public abstract class Personagem extends Elemento{
     
