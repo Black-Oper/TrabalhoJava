@@ -1,6 +1,5 @@
 import java.util.*;
 
-import classes.cenario.Grama;
 import classes.cenario.Porta;
 import classes.personagem.Jogador;
 
@@ -40,7 +39,6 @@ public class Main {
         do {
             clearScreen();
             tabuleiro.imprimirTabuleiro(jogador);
-            originalTabuleiro.verificarGrama(jogador);
             
             System.out.println("Digite a direção que deseja mover o jogador: ");
             String direcao = leitor.nextLine();
@@ -50,7 +48,7 @@ public class Main {
                 if (tabuleiro.tabuleiro[jogador.getPosx() - 1][jogador.getPosy()].isAndavel()) {
                     jogador.setPosx(jogador.getPosx() - 1);
                 }
-                // se colidir com alguma porta ir para o lugar da porta
+
                 for (Porta porta : portas) {
                     if (jogador.getPosx() == porta.getPosx() && jogador.getPosy() == porta.getPosy()) {
                         jogador.setPosx(porta.getJposx());
@@ -87,8 +85,6 @@ public class Main {
                 }
             }
             tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy()] = jogador;
-
-
             
         } while (true);
     }

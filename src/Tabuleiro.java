@@ -247,6 +247,6 @@ public class Tabuleiro {
 }
 
     private void iniciarEventoGrama() {
-        System.out.println("Você encontrou um Pokèmon!");
+        System.out.println("Você encontrou um Pokémon!");
     }
 }
