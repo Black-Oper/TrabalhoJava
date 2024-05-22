@@ -1,5 +1,7 @@
 package classes.personagem;
 
+import classes.cenario.Grama;
+
 public class Jogador extends Personagem{
 
     private String sprite;

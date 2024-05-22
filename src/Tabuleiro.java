@@ -5,10 +5,16 @@ import classes.cenario.Grama;
 import classes.cenario.Parede;
 import classes.cenario.Porta;
 import classes.personagem.Jogador;
+import java.util.List;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Tabuleiro {
 
     public Elemento[][] tabuleiro;
+    public List<Integer> posXGrama = new ArrayList<Integer>();
+    public List<Integer> posYGrama = new ArrayList<Integer>();
 
     public Tabuleiro() {
         tabuleiro = new Elemento[100][100];
@@ -218,16 +224,29 @@ public class Tabuleiro {
         }
     }
     
-    // public void imprimirTabuleiro(Jogador jogador) {
-    //     for (int i = 0; i < tabuleiro.length; i++) {
-    //         for (int j = 0; j < tabuleiro[i].length; j++) {
-    //             if (i == jogador.getPosx() && j == jogador.getPosy()) {
-    //                 System.out.print(jogador.getSprite());
-    //             } else {
-    //                 System.out.print(tabuleiro[i][j].getSprite());
-    //             }
-    //         }
-    //         System.out.println();
-    //     }
-    // }
+//     public void imprimirTabuleiro(Jogador jogador) {
+//         for (int i = 0; i < tabuleiro.length; i++) {
+//             for (int j = 0; j < tabuleiro[i].length; j++) {
+//                 if (i == jogador.getPosx() && j == jogador.getPosy()) {
+//                     System.out.print(jogador.getSprite());
+//                 } else {
+//                     System.out.print(tabuleiro[i][j].getSprite());
+//                 }
+//             }
+//             System.out.println();
+//         }
+//     }
+
+    public void verificarGrama(Jogador jogador) {
+        if (tabuleiro[jogador.getPosx()][jogador.getPosy()] instanceof Grama) {
+            Random random = new Random();
+            int number = random.nextInt(50);
+            if(number <= 10) iniciarEventoGrama();
+
+    }
+}
+
+    private void iniciarEventoGrama() {
+        System.out.println("Você encontrou um Pokèmon!");
+    }
 }

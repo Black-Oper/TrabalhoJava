@@ -1,5 +1,6 @@
 import java.util.*;
 
+import classes.cenario.Grama;
 import classes.cenario.Porta;
 import classes.personagem.Jogador;
 
@@ -39,6 +40,7 @@ public class Main {
         do {
             clearScreen();
             tabuleiro.imprimirTabuleiro(jogador);
+            originalTabuleiro.verificarGrama(jogador);
             
             System.out.println("Digite a direção que deseja mover o jogador: ");
             String direcao = leitor.nextLine();
@@ -85,6 +87,8 @@ public class Main {
                 }
             }
             tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy()] = jogador;
+
+
             
         } while (true);
     }
