@@ -216,11 +216,19 @@ public class Tabuleiro {
     }
 
     public void imprimirTabuleiro(Jogador jogador) {
-        for (int i = jogador.getPosx() - 5; i < jogador.getPosx() + 6; i++) {
-            for (int j = jogador.getPosy() - 5; j < jogador.getPosy() + 6; j++) {
-                System.out.print(tabuleiro[i][j].getSprite());
+        int startX = Math.max(0, jogador.getPosx() - 5);
+        int endX = Math.min(tabuleiro.length - 1, jogador.getPosx() + 5);
+        int startY = Math.max(0, jogador.getPosy() - 5);
+        int endY = Math.min(tabuleiro[0].length - 1, jogador.getPosy() + 5);
+    
+        for (int i = startX; i <= endX; i++) {
+            for (int j = startY; j <= endY; j++) {
+                if (i == jogador.getPosx() && j == jogador.getPosy()) {
+                    System.out.print(jogador.getSprite());
+                } else {
+                    System.out.print(tabuleiro[i][j].getSprite());
+                }
             }
-            System.out.println();
         }
     }
     
