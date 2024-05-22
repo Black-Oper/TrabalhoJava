@@ -1,4 +1,4 @@
-package classes;
+package classes.cenario;
 
 public class Grama extends Objetos {
 
@@ -14,3 +14,4 @@ public class Grama extends Objetos {
         return sprite;
     }
 }
+
