@@ -229,6 +229,7 @@ public class Tabuleiro {
                     System.out.print(tabuleiro[i][j].getSprite());
                 }
             }
+            System.out.println();
         }
     }
     

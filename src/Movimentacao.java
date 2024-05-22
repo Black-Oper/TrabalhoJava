@@ -26,6 +26,10 @@ public class Movimentacao {
                 }
             }
             tabuleiro.imprimirTabuleiro(jogador);  
+            
+            for(int i = 0; i < 2; i++) {
+                System.out.println();
+            }
         }
 
         public void moverParaBaixo() {
@@ -39,6 +43,10 @@ public class Movimentacao {
                 }
             }
             tabuleiro.imprimirTabuleiro(jogador); 
+            
+            for(int i = 0; i < 2; i++) {
+                System.out.println();
+            }
         }
 
         public void moverParaEsquerda() {
@@ -46,6 +54,10 @@ public class Movimentacao {
                 jogador.setPosy(jogador.getPosy() - 1);
             }
             tabuleiro.imprimirTabuleiro(jogador);  
+            
+            for(int i = 0; i < 2; i++) {
+                System.out.println();
+            }
         }
 
         public void moverParaDireita() {
@@ -53,6 +65,10 @@ public class Movimentacao {
                 jogador.setPosy(jogador.getPosy() + 1);
             }
             tabuleiro.imprimirTabuleiro(jogador); 
+
+            for(int i = 0; i < 2; i++) {
+                System.out.println();
+            }
         }
 
         @Override
