@@ -52,6 +52,7 @@ public class Tabuleiro {
             tabuleiro[i][j] = new classes.cenario.Parede("\u001B[40m"  + "⬛" + "\u001B[0m");
         }
     }
+    
 
     //arbustos - cidade1
     tabuleiro[92][90] = new Grama("\u001B[42m"  + "🌾" + "\u001B[0m");

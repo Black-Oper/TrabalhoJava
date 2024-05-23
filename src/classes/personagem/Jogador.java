@@ -1,12 +1,9 @@
 package classes.personagem;
 
-<<<<<<< Updated upstream
-=======
 import java.util.*;
 
 import classes.pokemon.Pokemon;
 
->>>>>>> Stashed changes
 public class Jogador extends Personagem{
 
     private String sprite;
