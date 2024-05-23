@@ -6,8 +6,8 @@ public class Npc extends Objetos {
 
     private String sprite;
 
-    public Npc(int posx, int posy) {
-        super(posx, posy, false);
+    public Npc() {
+        super(false);
         this.sprite = "😁";
     }
 

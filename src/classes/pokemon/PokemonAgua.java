@@ -1,15 +1,8 @@
 package classes.pokemon;
 
-import java.util.List;
-
 public class PokemonAgua extends Pokemon{
 
-    public PokemonAgua(String nome, String tipo, List<String> ataques, int nivel, int velocidade, int hp) {
-        super(nome, tipo, ataques, nivel, velocidade, hp);
+    public PokemonAgua(String nome, String ataque, int nivel, int velocidade, int hp, int forca) {
+        super(nome, "Agua", ataque, nivel, velocidade, hp, "Planta", forca);
     }
-
-    private String fraqueza;
-
-    
-    
 }

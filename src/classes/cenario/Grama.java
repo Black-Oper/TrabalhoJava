@@ -4,9 +4,9 @@ public class Grama extends Objetos {
 
     private String sprite;
 
-    public Grama(int posx, int posy) {
-        super(posx, posy, true);
-        this.sprite = "🌾";
+    public Grama(String sprite) {
+        super( true);
+        this.sprite = sprite;
     }
 
     @Override

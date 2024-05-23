@@ -6,9 +6,9 @@ public class Porta extends Objetos{
     private int jposx;
     private int jposy;
 
-    public Porta(int posx, int posy, int jposx, int jposy) {
-        super(posx, posy, true);
-        this.sprite = "🟫";
+    public Porta(int jposx, int jposy) {
+        super(true);
+        this.sprite = "\u001B[47m"  + "🟫" + "\u001B[0m";
         this.jposx = jposx;
         this.jposy = jposy;
     }

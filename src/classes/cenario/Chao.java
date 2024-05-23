@@ -4,8 +4,8 @@ public class Chao extends Objetos {
 
     private String sprite;
 
-    public Chao(int posx, int posy, String sprite) {
-        super(posx, posy, true);
+    public Chao(String sprite) {
+        super(true);
         this.sprite = sprite;
     }
 

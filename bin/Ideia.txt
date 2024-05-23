@@ -1,0 +1,38 @@
+Projeto java: Tirar a posy e posx de cada clase e reduzir no maximo ela
+
+OBS: COLAR UM NUMERO REPRESENTANDO CADA COR NAS CLASSE, SE O BONECO FOR E UMA CASA ANDAVEL O BONECO FICA COM O FUNDO DA MSM COR DA CASA QUE ELE FOI!
+
+
+
+Codigos cor
+
+	tabuleiro[89][87] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[89][86] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[89][85] = new Porta(0, 0, 10, 7);
+        tabuleiro[89][84] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[89][83] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+
+        tabuleiro[88][87] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[88][86] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[88][85] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[88][84] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[88][83] = new Parede(0, 0, "\u001B[47m"  + "⬜" + "\u001B[0m");
+
+        tabuleiro[87][87] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[87][86] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[87][85] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[87][84] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[87][83] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+
+        tabuleiro[86][87] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[86][86] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[86][85] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[86][84] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+        tabuleiro[86][83] = new Parede(0, 0, "\u001B[41m"  + "🟥" + "\u001B[0m");
+
+        // casa1 - cidade1 - interior
+        for (int i = 5; i < 10; i++) {
+            for (int j = 5; j < 11; j++) {
+                tabuleiro[i][j] = new Chao(i, j, "\u001B[43m" + "\u001B[33m"  + "🟨" + "\u001B[0m");
+            }
+        }

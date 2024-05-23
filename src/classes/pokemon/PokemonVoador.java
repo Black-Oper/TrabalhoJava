@@ -3,12 +3,8 @@ package classes.pokemon;
 import java.util.List;
 
 public class PokemonVoador extends Pokemon{
-    
-    private String fraqueza;
-    
-    public PokemonVoador(String nome, String tipo, List<String> ataques, int nivel, int velocidade, int hp) {
-        super(nome, tipo, ataques, nivel, velocidade, hp);
-        this.fraqueza = "Eletrico";
-    }
 
+    public PokemonVoador(String nome, String ataque, int nivel, int velocidade, int hp, int forca) {
+        super(nome, "Voador", ataque, nivel, velocidade, hp, "Eletrico", forca);
+    }
 }
