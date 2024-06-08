@@ -15,6 +15,7 @@ import java.util.List;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Tabuleiro {
 
@@ -238,17 +239,42 @@ public class Tabuleiro {
         int endX = Math.min(tabuleiro.length - 1, jogador.getPosx() + 5);
         int startY = Math.max(0, jogador.getPosy() - 5);
         int endY = Math.min(tabuleiro[0].length - 1, jogador.getPosy() + 5);
-    
+        
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+
         for (int i = startX; i <= endX; i++) {
+            System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
             for (int j = startY; j <= endY; j++) {
                 if (i == jogador.getPosx() && j == jogador.getPosy()) {
                     System.out.print(jogador.getSprite());
                 } else {
                     System.out.print(tabuleiro[i][j].getSprite());
                 }
-            }
+                }
+            System.out.print("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
             System.out.println();
         }
+
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[40m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+
     }
     
     // public void imprimirTabuleiro(Jogador jogador) {
@@ -269,13 +295,94 @@ public class Tabuleiro {
         if (tabuleiro[jogador.getPosx()][jogador.getPosy()] instanceof Grama) {
             Random random = new Random();
             int number = random.nextInt(50);
-            if(number <= 10) iniciarEventoGrama();
+            if(number <= 10) iniciarEventoGrama(jogador);
 
     }
 }
 
-    private void iniciarEventoGrama() {
-        System.out.println("Você encontrou um Pokémon!");
+    private void iniciarEventoGrama(Jogador jogador) {
+
+        if (jogador.getPokemon().size() == 0) {
+            System.out.println("Você não tem pokemons para batalhar!");
+            return;
+        }
+
+        if (jogador.getPokemon().get(0).getHp() == 0) {
+            System.out.println("Seu pokemon está desmaiado!");
+            return;
+        }
+
+        int op;
+
+        List<Pokemon> pokemonList = new ArrayList<>();
+        pokemonList.add(new Bulbassaur());
+        pokemonList.add(new Charmander());
+        pokemonList.add(new Squirtle());
+
+        Random random = new Random();
+        int number = random.nextInt(3);
+        Pokemon pokemon = pokemonList.get(number);
+
+        System.out.println("Um pokemon selvagem apareceu!");
+
+        do{
+            System.out.println("=====================================");
+            System.out.println("Pokemon selvagem: " + pokemon.getNome());
+            System.out.println("HP: " + pokemon.getHp());
+            System.out.println("=====================================");
+            System.out.println();
+            System.out.println("=====================================");
+            System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome());
+            System.out.println("HP: " + jogador.getPokemon().get(0).getHp());
+            System.out.println("=====================================");
+
+            System.out.println("1 - Atacar");
+            System.out.println("2 - Fugir");
+            System.out.print("Opcao: ");
+            op = new Scanner(System.in).nextInt();
+
+            switch (op) {
+                case 1:
+                    if (jogador.getPokemon().get(0).getVelocidade() > pokemon.getVelocidade() || jogador.getPokemon().get(0).getVelocidade() == pokemon.getVelocidade()){
+                        System.out.println("Seu " + jogador.getPokemon().get(0).getNome() + " atacou " + pokemon.getNome() + " com " + jogador.getPokemon().get(0).getAtaque());
+                        pokemon.setHp(pokemon.getHp() - 5);
+                        System.out.println("HP do " + pokemon.getNome() + ": " + pokemon.getHp());
+                        if (pokemon.getHp() <= 0) {
+                            System.out.println("Pokemon selvagem desmaiou!");
+                            return;
+                        } else {
+                            System.out.println("O " + pokemon.getNome() + " atacou seu " + jogador.getPokemon().get(0).getNome() + " com " + pokemon.getAtaque());
+                            jogador.getPokemon().get(0).setHp(jogador.getPokemon().get(0).getHp() - 5);
+                            System.out.println("HP do " + jogador.getPokemon().get(0).getNome() + ": " + jogador.getPokemon().get(0).getHp());
+                            if (jogador.getPokemon().get(0).getHp() <= 0) {
+                                System.out.println("Seu pokemon desmaiou!");
+                                return;
+                            }
+                        }
+                    }else{
+                        System.out.println("O " + pokemon.getNome() + " atacou seu " + jogador.getPokemon().get(0).getNome() + " com " + pokemon.getAtaque());
+                        jogador.getPokemon().get(0).setHp(jogador.getPokemon().get(0).getHp() - 5);
+                        System.out.println("HP do " + jogador.getPokemon().get(0).getNome() + ": " + jogador.getPokemon().get(0).getHp());
+                        if (jogador.getPokemon().get(0).getHp() <= 0) {
+                            System.out.println("Seu pokemon desmaiou!");
+                            return;
+                        }else{
+                            System.out.println("Seu " + jogador.getPokemon().get(0).getNome() + " atacou " + pokemon.getNome() + " com " + jogador.getPokemon().get(0).getAtaque());
+                            pokemon.setHp(pokemon.getHp() - 5);
+                            System.out.println("HP do " + pokemon.getNome() + ": " + pokemon.getHp());
+                            if (pokemon.getHp() <= 0) {
+                                System.out.println("Pokemon selvagem desmaiou!");
+                                return;
+                            }
+                        }
+                    }
+                    break;
+                case 2:
+                    return;
+                default:
+                    break;
+            }
+        }while(jogador.getPokemon().get(0).getHp() > 0 && pokemon.getHp() > 0);
     }
 
     public void colisaoPorta(Jogador jogador) {

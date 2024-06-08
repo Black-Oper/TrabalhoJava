@@ -34,7 +34,4 @@ public class PokemonEscolher extends Objetos{
     public Pokemon getPokemon() {
         return pokemon;
     }
-
-   
-    
 }
