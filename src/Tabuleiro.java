@@ -114,11 +114,6 @@ public class Tabuleiro {
     }
 
     for (int i = 77; i <= 83; i++) {
-        tabuleiro[76][i] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
-        tabuleiro[77][i] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
-    }
-
-    for (int i = 77; i <= 83; i++) {
         tabuleiro[76][i] = new Parede("\u001B[41m"  + "🟥" + "\u001B[0m");
         tabuleiro[77][i] = new Parede("\u001B[41m"  + "🟥" + "\u001B[0m");
     }
@@ -133,8 +128,8 @@ public class Tabuleiro {
 
     // casa2 - cidade2
     for (int i = 59; i <= 63; i++) {
-        tabuleiro[88][i] = new Parede("🟨");
-        tabuleiro[89][i] = new Parede("🟨");
+        tabuleiro[88][i] = new Parede("\u001B[43m" + "🟨" + "\u001B[0m");
+        tabuleiro[89][i] = new Parede("\u001B[43m" + "🟨" + "\u001B[0m");
         tabuleiro[90][i] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
     }
     tabuleiro[91][59] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
@@ -142,6 +137,37 @@ public class Tabuleiro {
     tabuleiro[91][61] = new Porta(10, 7);
     tabuleiro[91][62] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
     tabuleiro[91][63] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+
+    // casa3 - cidade2
+    for (int i = 12; i <= 16; i++) {
+        tabuleiro[85][i] = new Parede("\u001B[43m" + "🟨" + "\u001B[0m");
+        tabuleiro[86][i] = new Parede("\u001B[43m" + "🟨" + "\u001B[0m");
+        tabuleiro[87][i] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    }
+    tabuleiro[88][12] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[88][13] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[88][14] = new Porta(10, 7);
+    tabuleiro[88][15] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[88][16] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+
+    // laboratorio - cidade2
+    tabuleiro[75][27] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[75][28] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[75][29] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[75][30] = new Porta(15, 19);
+    tabuleiro[75][31] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[75][32] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    tabuleiro[75][33] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+
+    for (int i = 27; i <= 33; i++) {
+        tabuleiro[73][i] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+        tabuleiro[74][i] = new Parede("\u001B[47m"  + "⬜" + "\u001B[0m");
+    }
+
+    for (int i = 27; i <= 33; i++) {
+        tabuleiro[71][i] = new Parede("\u001B[48;5;94m" + "🟫" + "\u001B[0m");
+        tabuleiro[72][i] = new Parede("\u001B[48;5;94m" + "🟫" + "\u001B[0m");
+    }
 
     //caminho - cidade1
     for (int i = 90; i <= 91; i++) {
@@ -266,6 +292,71 @@ public class Tabuleiro {
             tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
         }
     }
+
+    for (int i = 59; i <= 65; i++) {
+        tabuleiro[86][i] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        tabuleiro[87][i] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    }
+
+    for (int i = 74; i <= 85; i++) {
+        tabuleiro[i][59] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        tabuleiro[i][60] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    }
+
+    for (int i = 59; i <= 67; i++) {
+        tabuleiro[72][i] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        tabuleiro[73][i] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    }
+
+    for (int i = 70; i <= 71; i++) {
+        for (int j = 61; j <= 62; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 69; i <= 71; i++) {
+        for (int j = 66; j <= 67; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 66; i <= 68; i++) {
+        for (int j = 56; j <= 57; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 75; i <= 77; i++) {
+        for (int j = 53; j <= 54; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 64; i <= 85; i++) {
+        for (int j = 51; j <= 52; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 64; i <= 70; i++) {
+        for (int j = 72; j <= 94; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 64; i <= 65; i++) {
+        for (int j = 53; j <= 71; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 39; i <= 63; i++) {
+        for (int j = 86; j <= 94; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+
     
         // pokemons
         Pokemon bullbassaur = new Bulbassaur();
