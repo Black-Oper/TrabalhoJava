@@ -356,6 +356,202 @@ public class Tabuleiro {
         }
     }
 
+    // arvores - cidade2
+    for (int i = 78; i <= 79; i++) {
+        for (int j = 24; j <= 38; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 76; i <= 77; i++) {
+        for (int j = 37; j <= 38; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 77; i <= 78; i++) {
+        for (int j = 18; j <= 25; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    tabuleiro[79][24] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    tabuleiro[79][25] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+
+    for (int i = 74; i <= 76; i++) {
+        for (int j = 20; j <= 25; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 68; i <= 73; i++) {
+        for (int j = 24; j <= 25; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 69; i <= 70; i++) {
+        for (int j = 21; j <= 23; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    tabuleiro[71][21] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    tabuleiro[71][22] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+
+    for (int i = 68; i <= 69; i++) {
+        for (int j = 26; j <= 33; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 68; i <= 70; i++) {
+        for (int j = 12; j <= 18; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 67; i <= 69; i++) {
+        tabuleiro[i][5] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        tabuleiro[i][11] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    }
+
+    for (int i = 77; i <= 78; i++) {
+        for (int j = 5; j <= 14; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 74; i <= 76; i++) {
+        for (int j = 5; j <= 8; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 73; i <= 75; i++) {
+        for (int j = 11; j <= 12; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 59; i <= 60; i++) {
+        for (int j = 7; j <= 10; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 61; i <= 63; i++) {
+        for (int j = 9; j <= 10; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 59; i <= 65; i++) {
+        for (int j = 14; j <= 15; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    tabuleiro[64][16] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    tabuleiro[65][16] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+
+    for (int i = 60; i <= 64; i++) {
+        for (int j = 21; j <= 23; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 57; i <= 65; i++) {
+        for (int j = 24; j <= 25; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 55; i <= 56; i++) {
+        for (int j = 5; j <= 10; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+        for (int j = 14; j <= 31; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    // arvores - cidade3
+    for (int i = 39; i <= 40; i++) {
+        for (int j = 30; j <= 31; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 44; i <= 54; i++) {
+        for (int j = 30; j <= 31; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 46; i <= 47; i++) {
+        for (int j = 32; j <= 51; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 39; i <= 40; i++) {
+        for (int j = 35; j <= 36; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 43; i <= 45; i++) {
+        for (int j = 36; j <= 37; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 41; i <= 43; i++) {
+        for (int j = 41; j <= 42; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 39; i <= 42; i++) {
+        for (int j = 45; j <= 47; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 39; i <= 41; i++) {
+        for (int j = 50; j <= 51; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 48; i <= 52; i++) {
+        tabuleiro[i][32] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    }
+
+    tabuleiro[48][33] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    tabuleiro[48][34] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+
+    tabuleiro[45][50] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    tabuleiro[45][51] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+
+    for (int i = 54; i <= 59; i++) {
+        tabuleiro[39][i] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+    }
+
+    tabuleiro[40][59] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+
+    for (int i = 39; i <= 55; i++) {
+        for (int j = 60; j <= 62; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
+
+    for (int i = 39; i <= 43; i++) {
+        for (int j = 63; j <= 85; j++) {
+            tabuleiro[i][j] = new Parede("\u001B[42m"  + "🍀" + "\u001B[0m");
+        }
+    }
 
     
         // pokemons
