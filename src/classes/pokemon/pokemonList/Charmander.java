@@ -2,11 +2,12 @@ package classes.pokemon.pokemonList;
 
 import classes.personagem.Jogador;
 import classes.pokemon.PokemonFogo;
+import classes.pokemon.listaataques.Ember;
 
 public class Charmander extends PokemonFogo{
 
     public Charmander() {
-        super("Charmander", "Ember", 5, 7, 8, 9);
+        super("Charmander", new Ember(), 5, 7, 8, 9);
     }
 
     public void evoluir(Jogador jogador) {

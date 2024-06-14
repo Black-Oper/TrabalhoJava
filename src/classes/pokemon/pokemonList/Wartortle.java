@@ -2,11 +2,12 @@ package classes.pokemon.pokemonList;
 
 import classes.personagem.Jogador;
 import classes.pokemon.PokemonAgua;
+import classes.pokemon.listaataques.WaterGun;
 
 public class Wartortle extends PokemonAgua{
 
     public Wartortle() {
-        super("Wartortle", "Water Pulse", 16, 10, 10, 10);
+        super("Wartortle", new WaterGun(), 16, 10, 10, 10);
     }
 
     public void evoluir(Jogador jogador){

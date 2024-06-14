@@ -5,6 +5,7 @@ import classes.cenario.Grama;
 import classes.cenario.Parede;
 import classes.cenario.PokemonEscolher;
 import classes.cenario.Porta;
+import classes.item.PocaoSimples;
 import classes.personagem.Jogador;
 import classes.pokemon.Pokemon;
 import classes.pokemon.pokemonList.Bulbassaur;
@@ -251,7 +252,7 @@ public class Tabuleiro {
                 } else {
                     System.out.print(tabuleiro[i][j].getSprite());
                 }
-                }
+            }
             System.out.print("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
             System.out.println();
         }
@@ -307,7 +308,7 @@ public class Tabuleiro {
             return;
         }
 
-        if (jogador.getPokemon().get(0).getHp() == 0) {
+        if ( jogador.getPokemon().get(0).getHp() <= 0 ) {
             System.out.println("Seu pokemon está desmaiado!");
             return;
         }
@@ -327,12 +328,12 @@ public class Tabuleiro {
 
         do{
             System.out.println("=====================================");
-            System.out.println("Pokemon selvagem: " + pokemon.getNome());
+            System.out.println("Pokemon selvagem: " + pokemon.getNome() + " - Nivel: " + pokemon.getNivel());
             System.out.println("HP: " + pokemon.getHp());
             System.out.println("=====================================");
             System.out.println();
             System.out.println("=====================================");
-            System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome());
+            System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome() + " - Nivel: " + jogador.getPokemon().get(0).getNivel());
             System.out.println("HP: " + jogador.getPokemon().get(0).getHp());
             System.out.println("=====================================");
 
@@ -344,34 +345,42 @@ public class Tabuleiro {
             switch (op) {
                 case 1:
                     if (jogador.getPokemon().get(0).getVelocidade() > pokemon.getVelocidade() || jogador.getPokemon().get(0).getVelocidade() == pokemon.getVelocidade()){
-                        System.out.println("Seu " + jogador.getPokemon().get(0).getNome() + " atacou " + pokemon.getNome() + " com " + jogador.getPokemon().get(0).getAtaque());
-                        pokemon.setHp(pokemon.getHp() - 5);
-                        System.out.println("HP do " + pokemon.getNome() + ": " + pokemon.getHp());
+
+                        jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), pokemon);
+
                         if (pokemon.getHp() <= 0) {
+
                             System.out.println("Pokemon selvagem desmaiou!");
+                            jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
+                            jogador.getPokemon().get(0).evoluir(jogador);
                             return;
+
                         } else {
-                            System.out.println("O " + pokemon.getNome() + " atacou seu " + jogador.getPokemon().get(0).getNome() + " com " + pokemon.getAtaque());
-                            jogador.getPokemon().get(0).setHp(jogador.getPokemon().get(0).getHp() - 5);
-                            System.out.println("HP do " + jogador.getPokemon().get(0).getNome() + ": " + jogador.getPokemon().get(0).getHp());
+                            
+                            pokemon.getAtaque().atacar(pokemon, jogador.getPokemon().get(0));
+
                             if (jogador.getPokemon().get(0).getHp() <= 0) {
+
                                 System.out.println("Seu pokemon desmaiou!");
                                 return;
                             }
                         }
                     }else{
-                        System.out.println("O " + pokemon.getNome() + " atacou seu " + jogador.getPokemon().get(0).getNome() + " com " + pokemon.getAtaque());
-                        jogador.getPokemon().get(0).setHp(jogador.getPokemon().get(0).getHp() - 5);
-                        System.out.println("HP do " + jogador.getPokemon().get(0).getNome() + ": " + jogador.getPokemon().get(0).getHp());
+                        
+                        pokemon.getAtaque().atacar(pokemon, jogador.getPokemon().get(0));
+
                         if (jogador.getPokemon().get(0).getHp() <= 0) {
+
                             System.out.println("Seu pokemon desmaiou!");
                             return;
+
                         }else{
-                            System.out.println("Seu " + jogador.getPokemon().get(0).getNome() + " atacou " + pokemon.getNome() + " com " + jogador.getPokemon().get(0).getAtaque());
-                            pokemon.setHp(pokemon.getHp() - 5);
-                            System.out.println("HP do " + pokemon.getNome() + ": " + pokemon.getHp());
+                            jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), pokemon);
+
                             if (pokemon.getHp() <= 0) {
                                 System.out.println("Pokemon selvagem desmaiou!");
+
+                                jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
                                 return;
                             }
                         }
@@ -402,6 +411,7 @@ public class Tabuleiro {
                 tabuleiro[6][17] = new Chao("🔳");
                 tabuleiro[6][19] = new Chao("🔳");
                 tabuleiro[6][21] = new Chao("🔳");
+                jogador.getMochila().adicionarItem(new PocaoSimples());
             } else {
                 jogador.setPosx(jogador.getPosx() + 1);
             }

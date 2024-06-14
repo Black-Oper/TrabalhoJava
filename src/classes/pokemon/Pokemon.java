@@ -1,16 +1,19 @@
 package classes.pokemon;
 
+import classes.personagem.Jogador;
+import classes.pokemon.listaataques.Ataque;
+
 public abstract class Pokemon {
     private String nome;
     private String tipo;
-    private String ataque;
+    private Ataque ataque;
     private int nivel;
     private int velocidade;
     private int hp;
     private String fraqueza;
     private int forca;
 
-    public Pokemon(String nome, String tipo, String ataque, int nivel, int velocidade, int hp, String fraqueza, int forca) {
+    public Pokemon(String nome, String tipo, Ataque ataque, int nivel, int velocidade, int hp, String fraqueza, int forca) {
         this.nome = nome;
         this.tipo = tipo;
         this.ataque = ataque;
@@ -37,11 +40,11 @@ public abstract class Pokemon {
         this.tipo = tipo;
     }
 
-    public String getAtaque() {
+    public Ataque getAtaque() {
         return ataque;
     }
 
-    public void setAtaque(String ataque) {
+    public void setAtaque(Ataque ataque) {
         this.ataque = ataque;
     }
 
@@ -90,5 +93,10 @@ public abstract class Pokemon {
         this.hp *= 1.1;
         this.velocidade *= 1.1;
         this.forca *= 1.1;
+    }
+
+    public void evoluir(Jogador jogador) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'evoluir'");
     }
 }

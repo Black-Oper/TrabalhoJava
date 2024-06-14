@@ -2,11 +2,12 @@ package classes.pokemon.pokemonList;
 
 import classes.personagem.Jogador;
 import classes.pokemon.PokemonFogo;
+import classes.pokemon.listaataques.Ember;
 
 public class Charmeleon extends PokemonFogo{
 
     public Charmeleon() {
-        super("Charmeleon", "Fire Fang", 16, 8, 11, 11);
+        super("Charmeleon", new Ember(), 16, 8, 11, 11);
     }
 
     public void evoluir(Jogador jogador) {

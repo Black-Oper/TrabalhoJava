@@ -58,6 +58,9 @@ public class Main {
                         jogador.setPosy(jogador.getPosy() + 1);
                     }
                     break;
+                case "m":
+                    jogador.getMochila().acessarMochila(jogador);
+                    break;
                 // case "q":
                 //     movimento.setDirecao(Movimentacao.Direcao.PARAR);
                 //     break;
