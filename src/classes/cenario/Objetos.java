@@ -8,7 +8,6 @@ public abstract class Objetos extends Elemento{
         this.andavel = andavel;
     }
 
-    
     public boolean isAndavel() {
         return andavel;
     }

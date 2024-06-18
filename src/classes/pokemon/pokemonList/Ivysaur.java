@@ -7,7 +7,7 @@ import classes.pokemon.listaataques.RazorLeaf;
 public class Ivysaur extends PokemonPlanta{
 
     public Ivysaur() {
-        super("Ivysaur", new RazorLeaf(), 1, 7, 12, 9);
+        super("Ivysaur", new RazorLeaf(), 1, 7, 12, 12);
     }
     
     public void evoluir(Jogador jogador) {

@@ -7,7 +7,7 @@ import classes.personagem.Jogador;
 public class PocaoSimples extends Item{
 
     public PocaoSimples() {
-        super("Poção Simples", "Recupera 10 pontos de vida.");
+        super("Poção Simples", "Recupera até 10 pontos de vida.");
     }
 
     @Override
@@ -27,11 +27,15 @@ public class PocaoSimples extends Item{
             return;
         }
 
-        
+        int cnpjoto = jogador.getPokemon().get(escolha).getHp();
 
         jogador.getPokemon().get(escolha).setHp(jogador.getPokemon().get(escolha).getHp() + 10);
 
-        System.out.println(jogador.getPokemon().get(escolha).getNome() + " recuperou 10 pontos de vida.");
+        if(jogador.getPokemon().get(escolha).getHp() > jogador.getPokemon().get(escolha).getHpMax()){
+            jogador.getPokemon().get(escolha).setHp(jogador.getPokemon().get(escolha).getHpMax());
+        }
+
+        System.out.println(jogador.getPokemon().get(escolha).getNome() + " recuperou " + (jogador.getPokemon().get(escolha).getHp() - cnpjoto) + " pontos de vida.");
     }
     
 }

@@ -9,7 +9,7 @@ import classes.pokemon.listaataques.RazorLeaf;
 public class Bulbassaur extends PokemonPlanta{
 
     public Bulbassaur() {
-        super("Bulbassaur", new RazorLeaf(), 5, 5, 10, 7);
+        super("Bulbassaur", new RazorLeaf(), 5, 5, 10, 10);
     }
     
     public void evoluir(Jogador jogador) {

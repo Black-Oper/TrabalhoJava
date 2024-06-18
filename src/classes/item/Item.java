@@ -29,7 +29,6 @@ public class Item{
     }
 
     public void usar(Jogador jogador) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'usar'");
+        // usa o item
     }
 }

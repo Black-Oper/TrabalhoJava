@@ -241,11 +241,22 @@ public class Tabuleiro {
         int startY = Math.max(0, jogador.getPosy() - 5);
         int endY = Math.min(tabuleiro[0].length - 1, jogador.getPosy() + 5);
         
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
         System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
 
         for (int i = startX; i <= endX; i++) {
-            System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+
+            if(i == jogador.getPosx()){
+                System.out.print("\u001B[45m" + "   " + "\u001B[42m" + "         " + "\u001B[45m" + "   " + "\u001B[40m" + " " + "\u001B[0m");
+            }else if(i == jogador.getPosx() - 1){
+                System.out.print("\u001B[45m" + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " + "\u001B[0m");
+
+            }else if(i == jogador.getPosx() + 1){
+                System.out.print("\u001B[45m" + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " + "\u001B[0m");
+            }else{
+                System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+            }
+
             for (int j = startY; j <= endY; j++) {
                 if (i == jogador.getPosx() && j == jogador.getPosy()) {
                     System.out.print(jogador.getSprite());
@@ -253,28 +264,35 @@ public class Tabuleiro {
                     System.out.print(tabuleiro[i][j].getSprite());
                 }
             }
-            System.out.print("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+
+            if (i == (jogador.getPosx() - 1)) {
+                System.out.print("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "       " + "\u001B[46m" + "[   ]" + "\u001B[45m" + "   " + "\u001B[0m");
+            }else if (i == (jogador.getPosx() + 1)) {
+                System.out.print("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "   " + "\u001B[41m" + "[   ]" + "\u001B[45m" + "       " + "\u001B[0m");
+                
+            }else{
+                System.out.print("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+            }
             System.out.println();
         }
-
         System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[40m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
-        System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
+        // System.out.println("\u001B[40m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
+        // System.out.println("\u001B[45m"  + "                                                          " + "\u001B[0m");
 
     }
     
@@ -298,8 +316,8 @@ public class Tabuleiro {
             int number = random.nextInt(50);
             if(number <= 10) iniciarEventoGrama(jogador);
 
+        }
     }
-}
 
     private void iniciarEventoGrama(Jogador jogador) {
 
