@@ -5,6 +5,7 @@ import classes.cenario.Grama;
 import classes.cenario.Parede;
 import classes.cenario.PokemonEscolher;
 import classes.cenario.Porta;
+import classes.cenario.Treinador;
 import classes.item.PocaoSimples;
 import classes.personagem.Jogador;
 import classes.pokemon.Pokemon;
@@ -230,9 +231,22 @@ public class Tabuleiro {
         Pokemon squirtle = new Squirtle();
         Pokemon charmander = new Charmander();
 
-        tabuleiro[6][17] = new PokemonEscolher(6, 17, "🌱", bullbassaur);
-        tabuleiro[6][19] = new PokemonEscolher(6, 19, "💧", squirtle);
-        tabuleiro[6][21] = new PokemonEscolher(6, 21, "🔥", charmander);
+        tabuleiro[6][17] = new PokemonEscolher("🔴", bullbassaur);
+        tabuleiro[6][19] = new PokemonEscolher("🔴", squirtle);
+        tabuleiro[6][21] = new PokemonEscolher("🔴", charmander);
+
+        // lista de pokemons
+        Pokemon pokemon1 = new Bulbassaur();
+        Pokemon pokemon2 = new Squirtle();
+        Pokemon pokemon3 = new Charmander();
+
+        List<Pokemon> pokemonList = new ArrayList<>();
+
+        pokemonList.add(pokemon1);
+        pokemonList.add(pokemon2);
+        pokemonList.add(pokemon3);
+
+        tabuleiro[8][17] = new Treinador(pokemonList, "🧑");
     }
 
     public void imprimirTabuleiro(Jogador jogador) {
@@ -325,26 +339,26 @@ public class Tabuleiro {
             System.out.println("Você não tem pokemons para batalhar!");
             return;
         }
-
-        if ( jogador.getPokemon().get(0).getHp() <= 0 ) {
+    
+        if (jogador.getPokemon().get(0).getHp() <= 0) {
             System.out.println("Seu pokemon está desmaiado!");
             return;
         }
-
+    
         int op;
-
+    
         List<Pokemon> pokemonList = new ArrayList<>();
         pokemonList.add(new Bulbassaur());
         pokemonList.add(new Charmander());
         pokemonList.add(new Squirtle());
-
+    
         Random random = new Random();
         int number = random.nextInt(3);
         Pokemon pokemon = pokemonList.get(number);
-
+    
         System.out.println("Um pokemon selvagem apareceu!");
-
-        do{
+    
+        do {
             System.out.println("=====================================");
             System.out.println("Pokemon selvagem: " + pokemon.getNome() + " - Nivel: " + pokemon.getNivel());
             System.out.println("HP: " + pokemon.getHp());
@@ -354,50 +368,70 @@ public class Tabuleiro {
             System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome() + " - Nivel: " + jogador.getPokemon().get(0).getNivel());
             System.out.println("HP: " + jogador.getPokemon().get(0).getHp());
             System.out.println("=====================================");
-
+    
             System.out.println("1 - Atacar");
             System.out.println("2 - Fugir");
             System.out.print("Opcao: ");
             op = new Scanner(System.in).nextInt();
-
+    
             switch (op) {
                 case 1:
-                    if (jogador.getPokemon().get(0).getVelocidade() > pokemon.getVelocidade() || jogador.getPokemon().get(0).getVelocidade() == pokemon.getVelocidade()){
-
+                    if (jogador.getPokemon().get(0).getVelocidade() > pokemon.getVelocidade() || jogador.getPokemon().get(0).getVelocidade() == pokemon.getVelocidade()) {
+    
                         jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), pokemon);
-
+    
+                        // Garantir que a vida do pokemon não seja menor que 0
+                        if (pokemon.getHp() < 0) {
+                            pokemon.setHp(0);
+                        }
+    
                         if (pokemon.getHp() <= 0) {
-
+    
                             System.out.println("Pokemon selvagem desmaiou!");
                             jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
                             jogador.getPokemon().get(0).evoluir(jogador);
                             return;
-
+    
                         } else {
-                            
+    
                             pokemon.getAtaque().atacar(pokemon, jogador.getPokemon().get(0));
-
+    
+                            // Garantir que a vida do pokemon do jogador não seja menor que 0
+                            if (jogador.getPokemon().get(0).getHp() < 0) {
+                                jogador.getPokemon().get(0).setHp(0);
+                            }
+    
                             if (jogador.getPokemon().get(0).getHp() <= 0) {
-
+    
                                 System.out.println("Seu pokemon desmaiou!");
                                 return;
                             }
                         }
-                    }else{
-                        
+                    } else {
+    
                         pokemon.getAtaque().atacar(pokemon, jogador.getPokemon().get(0));
-
+    
+                        // Garantir que a vida do pokemon do jogador não seja menor que 0
+                        if (jogador.getPokemon().get(0).getHp() < 0) {
+                            jogador.getPokemon().get(0).setHp(0);
+                        }
+    
                         if (jogador.getPokemon().get(0).getHp() <= 0) {
-
+    
                             System.out.println("Seu pokemon desmaiou!");
                             return;
-
-                        }else{
+    
+                        } else {
                             jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), pokemon);
-
+    
+                            // Garantir que a vida do pokemon selvagem não seja menor que 0
+                            if (pokemon.getHp() < 0) {
+                                pokemon.setHp(0);
+                            }
+    
                             if (pokemon.getHp() <= 0) {
                                 System.out.println("Pokemon selvagem desmaiou!");
-
+    
                                 jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
                                 return;
                             }
@@ -409,7 +443,7 @@ public class Tabuleiro {
                 default:
                     break;
             }
-        }while(jogador.getPokemon().get(0).getHp() > 0 && pokemon.getHp() > 0);
+        } while (jogador.getPokemon().get(0).getHp() > 0 && pokemon.getHp() > 0);
     }
 
     public void colisaoPorta(Jogador jogador) {
@@ -418,6 +452,11 @@ public class Tabuleiro {
             jogador.setPosx(porta.getJposx());
             jogador.setPosy(porta.getJposy());
         }
+    }
+
+    public static void clearScreen() {
+        for (int i = 0; i < 50; i++)
+            System.out.println();
     }
 
     public void colisaoEscolherPokemon(Jogador jogador) {
@@ -430,9 +469,147 @@ public class Tabuleiro {
                 tabuleiro[6][19] = new Chao("🔳");
                 tabuleiro[6][21] = new Chao("🔳");
                 jogador.getMochila().adicionarItem(new PocaoSimples());
+                clearScreen();
             } else {
                 jogador.setPosx(jogador.getPosx() + 1);
+                clearScreen();
             }
         }
+    }
+
+    public void colisaoTreinador(Jogador jogador) {
+        if (!(tabuleiro[jogador.getPosx()][jogador.getPosy()] instanceof Treinador)) {
+            return;
+        }
+    
+        Treinador treinador = (Treinador) tabuleiro[jogador.getPosx()][jogador.getPosy()];
+        Scanner scanner = new Scanner(System.in);
+        int op;
+    
+        do {
+            System.out.println("=====================================");
+            System.out.println("Treinador: " + treinador.getSprite());
+            System.out.println(treinador.getPokemon().get(0) + " - Nivel: " + treinador.getPokemon().get(0).getNivel() + " - HP: " + treinador.getPokemon().get(0).getHp());
+            System.out.println("=====================================\n");
+            System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome() + " - Nivel: " + jogador.getPokemon().get(0).getNivel() + " - HP: " + jogador.getPokemon().get(0).getHp());
+            System.out.println("=====================================");
+            System.out.println("1 - Atacar");
+            System.out.println("2 - Fugir");
+            System.out.print("Opcao: ");
+            op = scanner.nextInt();
+    
+            if (op == 2) {
+                return;
+            } else if (op == 1) {
+                realizarAtaque(jogador, treinador);
+                if (jogador.getPokemon().get(0).getHp() <= 0) {
+                    System.out.println("Seu pokemon desmaiou!");
+                    return;
+                } else if (treinador.getPokemon().get(0).getHp() <= 0) {
+                    System.out.println("Pokemon do treinador desmaiou!");
+                    jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
+                    return;
+                }
+            }
+        } while (true);
+    }
+    
+    private void realizarAtaque(Jogador jogador, Treinador treinador) {
+        Pokemon pokemonJogador = jogador.getPokemon().get(0);
+        Pokemon pokemonTreinador = treinador.getPokemon().get(0);
+    
+        if (pokemonJogador.getVelocidade() >= pokemonTreinador.getVelocidade()) {
+            pokemonJogador.getAtaque().atacar(pokemonJogador, pokemonTreinador);
+            ajustarHp(pokemonTreinador);
+            if (pokemonTreinador.getHp() > 0) {
+                pokemonTreinador.getAtaque().atacar(pokemonTreinador, pokemonJogador);
+                ajustarHp(pokemonJogador);
+            }
+        } else {
+            pokemonTreinador.getAtaque().atacar(pokemonTreinador, pokemonJogador);
+            ajustarHp(pokemonJogador);
+            if (pokemonJogador.getHp() > 0) {
+                pokemonJogador.getAtaque().atacar(pokemonJogador, pokemonTreinador);
+                ajustarHp(pokemonTreinador);
+            }
+        }
+    }
+    
+    private void ajustarHp(Pokemon pokemon) {
+        if (pokemon.getHp() < 0) {
+            pokemon.setHp(0);
+        }
+    }
+
+    public void acessarPokemon(Jogador jogador) {
+        clearScreen();
+    
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print(" Pokémon:                 ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        
+        for (int i = 0; i < 6; i++) {
+            if (jogador.getPokemon().size() > i && jogador.getPokemon().get(i) != null) {
+                String nome = jogador.getPokemon().get(i).getNome().substring(0, Math.min(jogador.getPokemon().get(i).getNome().length(), 3));
+                int nivel = jogador.getPokemon().get(i).getNivel();
+                int hp = jogador.getPokemon().get(i).getHp();
+
+                if (i == 2) {
+                    System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+                    System.out.print(String.format(" %s - lvl: %03d - HP: %03d ", nome, nivel, hp));
+                    System.out.println("\u001B[40m" + " " + "\u001B[45m" + "       " + "\u001B[46m" + "[   ]" + "\u001B[45m" + "   " + "\u001B[0m");
+                }else if(i == 3){
+                    System.out.print("\u001B[45m"  + "   " + "\u001B[42m" + "         " + "\u001B[45m" + "   " + "\u001B[40m" + " " +"\u001B[0m");
+                    System.out.print(String.format(" %s - lvl: %03d - HP: %03d ", nome, nivel, hp));
+                    System.out.println("\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+                }else if(i == 4){
+                    System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+                    System.out.print(String.format(" %s - lvl: %03d - HP: %03d ", nome, nivel, hp));
+                    System.out.println("\u001B[40m" + " " + "\u001B[45m" + "   " + "\u001B[41m" + "[   ]" + "\u001B[45m" + "       " + "\u001B[0m");
+                }else{
+                    System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+                    System.out.print(String.format(" %s - lvl: %03d - HP: %03d ", nome, nivel, hp));
+                    System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+                }
+            } else {
+
+                if (i == 2) {
+                    System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+                    System.out.print("                          "); // 26 espaços
+                    System.out.println("\u001B[40m" + " " + "\u001B[45m" + "       " + "\u001B[46m" + "[   ]" + "\u001B[45m" + "   " + "\u001B[0m");
+                }else if(i == 3){
+                    System.out.print("\u001B[45m"  + "   " + "\u001B[42m" + "         " + "\u001B[45m" + "   " + "\u001B[40m" + " " +"\u001B[0m");
+                    System.out.print("                          ");
+                    System.out.println("\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+                }else if(i == 4){
+                    System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+                    System.out.print("                          ");
+                    System.out.println("\u001B[40m" + " " + "\u001B[45m" + "   " + "\u001B[41m" + "[   ]" + "\u001B[45m" + "       " + "\u001B[0m");
+                }else{
+                    System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+                    System.out.print("                          "); // 26 espaços
+                    System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+                }
+            }
+        }
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
+    
+        new Scanner(System.in).nextLine();
     }
 }

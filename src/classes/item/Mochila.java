@@ -34,6 +34,11 @@ public class Mochila {
         }
     }
 
+    // eu poderia fazer um simples comentário sobre a função acessarMochila, mas eu prefiro fazer um comentário sobre o comentário que eu poderia fazer sobre a função acessarMochila
+    // dito isso
+    // eu vou deixar aqui registrado um fato curioso sobre os guaxinins
+    // eles podem emitir uma variedade de potentes vocalizações agudas e ásperas, que podem ser ouvidas de grandes distâncias
+
     public void acessarMochila(Jogador jogador) {
         Scanner scanner = new Scanner(System.in);
 

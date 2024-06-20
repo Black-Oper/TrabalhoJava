@@ -61,6 +61,9 @@ public class Main {
                 case "m":
                     jogador.getMochila().acessarMochila(jogador);
                     break;
+                case "p":
+                    tabuleiro.acessarPokemon(jogador);
+                    break;
                 // case "q":
                 //     movimento.setDirecao(Movimentacao.Direcao.PARAR);
                 //     break;
@@ -68,6 +71,7 @@ public class Main {
                     System.out.println("Movimento inválido! Tente novamente.");
             }
             clearScreen();
+            originalTabuleiro.colisaoTreinador(jogador);
             originalTabuleiro.verificarGrama(jogador);
             originalTabuleiro.colisaoPorta(jogador);
             originalTabuleiro.colisaoEscolherPokemon(jogador);
