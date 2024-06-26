@@ -76,6 +76,7 @@ public class Main {
             originalTabuleiro.colisaoPorta(jogador);
             originalTabuleiro.colisaoEscolherPokemon(jogador);
             originalTabuleiro.imprimirTabuleiro(jogador);
+            originalTabuleiro.acessarCuradorECurarPokemons(jogador);
         } while (true);
     }
 }

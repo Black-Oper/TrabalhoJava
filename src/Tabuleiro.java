@@ -1,5 +1,6 @@
 import classes.cenario.Caminho;
 import classes.cenario.Chao;
+import classes.cenario.Curador;
 import classes.cenario.Elemento;
 import classes.cenario.Grama;
 import classes.cenario.Parede;
@@ -247,6 +248,10 @@ public class Tabuleiro {
         pokemonList.add(pokemon3);
 
         tabuleiro[8][17] = new Treinador(pokemonList, "🧑");
+
+        // pokestop
+
+        tabuleiro[12][17] = new Curador("🏥");
     }
 
     public void imprimirTabuleiro(Jogador jogador) {
@@ -481,15 +486,27 @@ public class Tabuleiro {
         if (!(tabuleiro[jogador.getPosx()][jogador.getPosy()] instanceof Treinador)) {
             return;
         }
+
+        if (jogador.getPokemon().isEmpty()) {
+            System.out.println("Você não tem pokemons para batalhar!");
+            return;
+        }
     
         Treinador treinador = (Treinador) tabuleiro[jogador.getPosx()][jogador.getPosy()];
         Scanner scanner = new Scanner(System.in);
         int op;
     
         do {
+
+            if (treinador.getPokemon().get(0).getHp() <= 0) {
+                return;
+            } else if(jogador.getPokemon().get(0).getHp() <= 0){
+                return;
+            }
+
             System.out.println("=====================================");
-            System.out.println("Treinador: " + treinador.getSprite());
-            System.out.println(treinador.getPokemon().get(0) + " - Nivel: " + treinador.getPokemon().get(0).getNivel() + " - HP: " + treinador.getPokemon().get(0).getHp());
+            System.out.println("Treinador:");
+            System.out.println(treinador.getPokemon().get(0).getNome() + " - Nivel: " + treinador.getPokemon().get(0).getNivel() + " - HP: " + treinador.getPokemon().get(0).getHp());
             System.out.println("=====================================\n");
             System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome() + " - Nivel: " + jogador.getPokemon().get(0).getNivel() + " - HP: " + jogador.getPokemon().get(0).getHp());
             System.out.println("=====================================");
@@ -501,15 +518,9 @@ public class Tabuleiro {
             if (op == 2) {
                 return;
             } else if (op == 1) {
-                realizarAtaque(jogador, treinador);
-                if (jogador.getPokemon().get(0).getHp() <= 0) {
-                    System.out.println("Seu pokemon desmaiou!");
-                    return;
-                } else if (treinador.getPokemon().get(0).getHp() <= 0) {
-                    System.out.println("Pokemon do treinador desmaiou!");
-                    jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
-                    return;
-                }
+                    realizarAtaque(jogador, treinador);
+                    ajustarHp(treinador.getPokemon().get(0));
+                    ajustarHp(jogador.getPokemon().get(0));
             }
         } while (true);
     }
@@ -518,20 +529,33 @@ public class Tabuleiro {
         Pokemon pokemonJogador = jogador.getPokemon().get(0);
         Pokemon pokemonTreinador = treinador.getPokemon().get(0);
     
-        if (pokemonJogador.getVelocidade() >= pokemonTreinador.getVelocidade()) {
-            pokemonJogador.getAtaque().atacar(pokemonJogador, pokemonTreinador);
-            ajustarHp(pokemonTreinador);
-            if (pokemonTreinador.getHp() > 0) {
-                pokemonTreinador.getAtaque().atacar(pokemonTreinador, pokemonJogador);
-                ajustarHp(pokemonJogador);
+        if(jogador.getPokemon().get(0).getVelocidade() >= treinador.getPokemon().get(0).getVelocidade()) {
+            jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), treinador.getPokemon().get(0));
+            if (treinador.getPokemon().get(0).getHp() <= 0) {
+                System.out.println("Pokémon inimigo desmaiou!");
+                jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
+                jogador.getMochila().adicionarItem(new PocaoSimples());
+                return;
             }
-        } else {
-            pokemonTreinador.getAtaque().atacar(pokemonTreinador, pokemonJogador);
-            ajustarHp(pokemonJogador);
-            if (pokemonJogador.getHp() > 0) {
-                pokemonJogador.getAtaque().atacar(pokemonJogador, pokemonTreinador);
-                ajustarHp(pokemonTreinador);
+            treinador.getPokemon().get(0).getAtaque().atacar(treinador.getPokemon().get(0), jogador.getPokemon().get(0));
+            if (jogador.getPokemon().get(0).getHp() <= 0) {
+                System.out.println("Seu pokemon desmaiou!");
+                return;
             }
+        }else{
+            treinador.getPokemon().get(0).getAtaque().atacar(treinador.getPokemon().get(0), jogador.getPokemon().get(0));
+            if (jogador.getPokemon().get(0).getHp() <= 0) {
+                System.out.println("Seu pokemon desmaiou!");
+                return;
+            }
+            jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), treinador.getPokemon().get(0));
+            if (treinador.getPokemon().get(0).getHp() <= 0) {
+                System.out.println("Pokémon inimigo desmaiou!");
+                jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
+                jogador.getMochila().adicionarItem(new PocaoSimples());
+                return;
+            }
+        
         }
     }
     
@@ -539,6 +563,15 @@ public class Tabuleiro {
         if (pokemon.getHp() < 0) {
             pokemon.setHp(0);
         }
+    }
+
+    public void acessarCuradorECurarPokemons(Jogador jogador) {
+        if (!(tabuleiro[jogador.getPosx()][jogador.getPosy()] instanceof Curador)) {
+            return;
+        }
+    
+        Curador curador = (Curador) tabuleiro[jogador.getPosx()][jogador.getPosy()];
+        curador.comoAssimDaOndeVemEssaMusica(jogador);
     }
 
     public void acessarPokemon(Jogador jogador) {
