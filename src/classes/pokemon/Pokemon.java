@@ -1,6 +1,8 @@
 package classes.pokemon;
 
-public abstract class Pokemon {
+import java.io.Serializable;
+
+public abstract class Pokemon implements Serializable {
     private String nome;
     private String tipo;
     private String ataque;

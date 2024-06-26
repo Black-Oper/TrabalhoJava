@@ -1,17 +1,17 @@
 package classes.personagem;
 
+import java.io.Serializable;
 import java.util.*;
 
 import classes.pokemon.Pokemon;
 
-public class Jogador extends Personagem{
+public class Jogador extends Personagem implements Serializable {
 
-    private String sprite;
+    private final String sprite = "🧢";
     private List<Pokemon> pokemonList;
 
     public Jogador(int posx, int posy) {
         super(posx, posy);
-        this.sprite = "🧢";
         this.pokemonList = new ArrayList<>();
     }
 

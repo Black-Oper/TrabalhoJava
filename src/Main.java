@@ -26,6 +26,13 @@ public class Main {
         Thread movimentoThread = new Thread(movimento);
         movimentoThread.start();
 
+        // Verifica a existência do arquivo, caso não exista, o cria.
+        if (!EstadoJogo.verificarArquivo()) {
+            EstadoJogo.criarArquivo();
+        }
+
+        EstadoJogo dadosProgresso = new EstadoJogo(EstadoJogo.carregarProgreso());
+
         do {
             clearScreen();
             tabuleiro.imprimirTabuleiro(jogador);
@@ -52,6 +59,8 @@ public class Main {
                 case "q":
                     movimento.setDirecao(Movimentacao.Direcao.PARAR);
                     break;
+                case "S":
+                    dadosProgresso.salvarProgresso(jogador);
                 default:
                     System.out.println("Movimento inválido! Tente novamente.");
             }

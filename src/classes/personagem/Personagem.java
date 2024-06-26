@@ -2,7 +2,8 @@ package classes.personagem;
 
 import classes.cenario.Elemento;
 
-public abstract class Personagem extends Elemento{
+
+public abstract class Personagem extends Elemento {
     
     private int posx;
     private int posy;
