@@ -99,4 +99,8 @@ public abstract class Pokemon {
     public void evoluir(Jogador jogador) {
         // evoluir pokemon
     }
+
+    public String nomeColor(){
+        return "\u001B[33m" + nome + "\u001B[0m";
+    }
 }

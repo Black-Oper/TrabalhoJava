@@ -14,11 +14,7 @@ import classes.pokemon.pokemonList.Bulbassaur;
 import classes.pokemon.pokemonList.Charmander;
 import classes.pokemon.pokemonList.Squirtle;
 
-import java.util.List;
-
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Tabuleiro {
 
@@ -350,8 +346,6 @@ public class Tabuleiro {
             return;
         }
     
-        int op;
-    
         List<Pokemon> pokemonList = new ArrayList<>();
         pokemonList.add(new Bulbassaur());
         pokemonList.add(new Charmander());
@@ -360,95 +354,77 @@ public class Tabuleiro {
         Random random = new Random();
         int number = random.nextInt(3);
         Pokemon pokemon = pokemonList.get(number);
-    
-        System.out.println("Um pokemon selvagem apareceu!");
-    
-        do {
-            System.out.println("=====================================");
-            System.out.println("Pokemon selvagem: " + pokemon.getNome() + " - Nivel: " + pokemon.getNivel());
-            System.out.println("HP: " + pokemon.getHp());
-            System.out.println("=====================================");
-            System.out.println();
-            System.out.println("=====================================");
-            System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome() + " - Nivel: " + jogador.getPokemon().get(0).getNivel());
-            System.out.println("HP: " + jogador.getPokemon().get(0).getHp());
-            System.out.println("=====================================");
-    
-            System.out.println("1 - Atacar");
-            System.out.println("2 - Fugir");
-            System.out.print("Opcao: ");
+
+        int op;
+
+        char[] nome_char = new char[12];
+        String rival = pokemon.getNome();
+        char[] name_char = new char[12];
+        String player = jogador.getPokemon().get(0).getNome();
+        padronizarNome(nome_char, name_char, rival, player); //deixar os nomes organizados! todos irao ter 12 char
+
+        do{
+
+            sistemaBatalha(jogador, pokemon, nome_char, name_char); //vai chamar a interface de batalha
+
+            System.out.print(" ");
             op = new Scanner(System.in).nextInt();
-    
+            System.out.println("\n\n\n\n\n\n");
+
             switch (op) {
                 case 1:
-                    if (jogador.getPokemon().get(0).getVelocidade() > pokemon.getVelocidade() || jogador.getPokemon().get(0).getVelocidade() == pokemon.getVelocidade()) {
-    
+                    if (jogador.getPokemon().get(0).getVelocidade() > pokemon.getVelocidade() || jogador.getPokemon().get(0).getVelocidade() == pokemon.getVelocidade()){
+
+                        System.out.print("\u001B[32m" + "               ");
                         jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), pokemon);
-    
-                        // Garantir que a vida do pokemon não seja menor que 0
-                        if (pokemon.getHp() < 0) {
-                            pokemon.setHp(0);
-                        }
-    
+
                         if (pokemon.getHp() <= 0) {
-    
-                            System.out.println("Pokemon selvagem desmaiou!");
+
+                            System.out.println("\u001B[32m" + "   Pokemon selvagem desmaiou! Você ganhou a batalha! ");
                             jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
                             jogador.getPokemon().get(0).evoluir(jogador);
                             return;
-    
+
                         } else {
-    
+                            System.out.print("\u001B[31m" + "               ");
                             pokemon.getAtaque().atacar(pokemon, jogador.getPokemon().get(0));
-    
-                            // Garantir que a vida do pokemon do jogador não seja menor que 0
-                            if (jogador.getPokemon().get(0).getHp() < 0) {
-                                jogador.getPokemon().get(0).setHp(0);
-                            }
-    
+
                             if (jogador.getPokemon().get(0).getHp() <= 0) {
-    
-                                System.out.println("Seu pokemon desmaiou!");
+
+                                System.out.println("\u001B[31m" + "                Seu pokemon desmaiou!");
                                 return;
                             }
+
                         }
-                    } else {
-    
+                    }else{
+                        System.out.print("\u001B[31m" + "               ");
                         pokemon.getAtaque().atacar(pokemon, jogador.getPokemon().get(0));
-    
-                        // Garantir que a vida do pokemon do jogador não seja menor que 0
-                        if (jogador.getPokemon().get(0).getHp() < 0) {
-                            jogador.getPokemon().get(0).setHp(0);
-                        }
-    
+
                         if (jogador.getPokemon().get(0).getHp() <= 0) {
-    
-                            System.out.println("Seu pokemon desmaiou!");
+
+                            System.out.println("\u001B[31m" + "                Seu pokemon desmaiou!");
                             return;
-    
-                        } else {
+
+                        }else{
+                            System.out.print("\u001B[32m" + "               ");
                             jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), pokemon);
-    
-                            // Garantir que a vida do pokemon selvagem não seja menor que 0
-                            if (pokemon.getHp() < 0) {
-                                pokemon.setHp(0);
-                            }
-    
+
                             if (pokemon.getHp() <= 0) {
-                                System.out.println("Pokemon selvagem desmaiou!");
-    
+                                System.out.println("\u001B[32m" + "   Pokemon selvagem desmaiou! Você ganhou a batalha! ");
+
                                 jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
                                 return;
                             }
                         }
                     }
+                    System.out.print("\u001B[0m");
                     break;
                 case 2:
                     return;
                 default:
                     break;
             }
-        } while (jogador.getPokemon().get(0).getHp() > 0 && pokemon.getHp() > 0);
+        }while(jogador.getPokemon().get(0).getHp() > 0 && pokemon.getHp() > 0);
     }
 
     public void colisaoPorta(Jogador jogador) {
@@ -488,13 +464,20 @@ public class Tabuleiro {
         }
 
         if (jogador.getPokemon().isEmpty()) {
-            System.out.println("Você não tem pokemons para batalhar!");
+            System.out.println("          Você não tem pokemons para batalhar!");
             return;
         }
-    
+
+
         Treinador treinador = (Treinador) tabuleiro[jogador.getPosx()][jogador.getPosy()];
         Scanner scanner = new Scanner(System.in);
         int op;
+        //padrozinar:
+        char[] nome_char = new char[12];
+        String rival = treinador.getPokemon().get(0).getNome();
+        char[] name_char = new char[12];
+        String player = jogador.getPokemon().get(0).getNome();
+        padronizarNome(nome_char, name_char, rival, player); //deixar os nomes organizados! todos irao ter 12 char
     
         do {
 
@@ -504,16 +487,10 @@ public class Tabuleiro {
                 return;
             }
 
-            System.out.println("=====================================");
-            System.out.println("Treinador:");
-            System.out.println(treinador.getPokemon().get(0).getNome() + " - Nivel: " + treinador.getPokemon().get(0).getNivel() + " - HP: " + treinador.getPokemon().get(0).getHp());
-            System.out.println("=====================================\n");
-            System.out.println("Seu pokemon: " + jogador.getPokemon().get(0).getNome() + " - Nivel: " + jogador.getPokemon().get(0).getNivel() + " - HP: " + jogador.getPokemon().get(0).getHp());
-            System.out.println("=====================================");
-            System.out.println("1 - Atacar");
-            System.out.println("2 - Fugir");
-            System.out.print("Opcao: ");
+            treinadorBatalha(jogador, treinador, nome_char, name_char); //vai chamar a interface de batalha
+            System.out.print(" ");
             op = scanner.nextInt();
+            System.out.println("\n\n\n\n\n\n");
     
             if (op == 2) {
                 return;
@@ -524,33 +501,37 @@ public class Tabuleiro {
             }
         } while (true);
     }
-    
+
     private void realizarAtaque(Jogador jogador, Treinador treinador) {
         Pokemon pokemonJogador = jogador.getPokemon().get(0);
         Pokemon pokemonTreinador = treinador.getPokemon().get(0);
     
         if(jogador.getPokemon().get(0).getVelocidade() >= treinador.getPokemon().get(0).getVelocidade()) {
+            System.out.print("\u001B[32m" + "               ");
             jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), treinador.getPokemon().get(0));
             if (treinador.getPokemon().get(0).getHp() <= 0) {
-                System.out.println("Pokémon inimigo desmaiou!");
+                System.out.println("\u001B[32m" + "               Pokémon inimigo desmaiou!"+ "\u001B[0m");
                 jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
                 jogador.getMochila().adicionarItem(new PocaoSimples());
                 return;
             }
+            System.out.print("\u001B[31m" + "               ");
             treinador.getPokemon().get(0).getAtaque().atacar(treinador.getPokemon().get(0), jogador.getPokemon().get(0));
             if (jogador.getPokemon().get(0).getHp() <= 0) {
-                System.out.println("Seu pokemon desmaiou!");
+                System.out.println("\u001B[31m" + "               Seu pokemon desmaiou!" + "\u001B[0m");
                 return;
             }
         }else{
+            System.out.print("\u001B[31m" + "               ");
             treinador.getPokemon().get(0).getAtaque().atacar(treinador.getPokemon().get(0), jogador.getPokemon().get(0));
             if (jogador.getPokemon().get(0).getHp() <= 0) {
-                System.out.println("Seu pokemon desmaiou!");
+                System.out.println("\u001B[31m" + "               eu pokemon desmaiou!" + "\u001B[0m");
                 return;
             }
+            System.out.print("\u001B[32m" + "               ");
             jogador.getPokemon().get(0).getAtaque().atacar(jogador.getPokemon().get(0), treinador.getPokemon().get(0));
             if (treinador.getPokemon().get(0).getHp() <= 0) {
-                System.out.println("Pokémon inimigo desmaiou!");
+                System.out.println("\u001B[32m" + "               Pokémon inimigo desmaiou!" + "\u001B[0m");
                 jogador.getPokemon().get(0).setNivel(jogador.getPokemon().get(0).getNivel() + 1);
                 jogador.getMochila().adicionarItem(new PocaoSimples());
                 return;
@@ -645,4 +626,131 @@ public class Tabuleiro {
     
         new Scanner(System.in).nextLine();
     }
+    public void sistemaBatalha(Jogador jogador, Pokemon pokemon, char[] nome_char, char[] name_char){
+        // para ficar padrao o hp e level!
+        int nivel = jogador.getPokemon().get(0).getNivel();
+        int hp = jogador.getPokemon().get(0).getHp();
+        int nivel_rival= pokemon.getNivel();
+        int hp_rival = pokemon.getHp();
+
+
+        //INTERFACE VISUAL DA BATALHA, ESTÁ TUDO CERTO POREM NÃO DEU PARA COLOCAR EMOJI E FUNCIONA SÓ PARA UM POKEMON!
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("   UM POKEMON APARECEU!   ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.printf(pokemon.nomeColor());
+        System.out.print(nome_char);
+        System.out.printf("\u001B[0m    LV: %03d   ", nivel_rival);
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.printf("                HP: %03d   ", hp_rival);
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[40m" + " " + "\u001B[45m" + "       " + "\u001B[46m" + "[   ]" + "\u001B[45m" + "   " + "\u001B[0m");
+        System.out.print("\u001B[45m"  + "   " + "\u001B[42m" + "         " + "\u001B[45m" + "   " + "\u001B[40m" + " " +"\u001B[0m");
+        System.out.print("        SEU POKEMON:      ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+        System.out.printf(jogador.getPokemon().get(0).nomeColor());
+        System.out.print(name_char);
+        System.out.printf("\u001B[0m    LV: %03d   ", nivel);
+        System.out.println("\u001B[40m" + " " + "\u001B[45m" + "   " + "\u001B[41m" + "[   ]" + "\u001B[45m" + "       " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.printf("                HP: %03d   ", hp);
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print(" 1 - ATACAR               ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print(" 2 - FUGIR                ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
+
+    }
+
+    public void treinadorBatalha(Jogador jogador, Treinador treinador, char[] nome_char, char[] name_char){
+        // para ficar padrao o hp e level!
+        int nivel = jogador.getPokemon().get(0).getNivel();
+        int hp = jogador.getPokemon().get(0).getHp();
+        int nivel_rival = treinador.getPokemon().get(0).getNivel();
+        int hp_rival = treinador.getPokemon().get(0).getHp();
+
+
+        //INTERFACE VISUAL DA BATALHA, ESTÁ TUDO CERTO POREM NÃO DEU PARA COLOCAR EMOJI E FUNCIONA SÓ PARA UM POKEMON!
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("    Professor Carvalho    ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.printf(treinador.getPokemon().get(0).nomeColor());
+        System.out.print(nome_char);
+        System.out.printf("\u001B[0m    LV: %03d   ", nivel_rival);
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.printf("                HP: %03d   ", hp_rival);
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[40m" + " " + "\u001B[45m" + "       " + "\u001B[46m" + "[   ]" + "\u001B[45m" + "   " + "\u001B[0m");
+        System.out.print("\u001B[45m"  + "   " + "\u001B[42m" + "         " + "\u001B[45m" + "   " + "\u001B[40m" + " " +"\u001B[0m");
+        System.out.print("        SEU POKEMON:      ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m"  + "      " + "\u001B[42m" + "   " + "\u001B[45m" + "      " + "\u001B[40m" + " " +"\u001B[0m");
+        System.out.printf(jogador.getPokemon().get(0).nomeColor());
+        System.out.print(name_char);
+        System.out.printf("\u001B[0m    LV: %03d   ", nivel);
+        System.out.println("\u001B[40m" + " " + "\u001B[45m" + "   " + "\u001B[41m" + "[   ]" + "\u001B[45m" + "       " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.printf("                HP: %03d   ", hp);
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print("                          ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print(" 1 - ATACAR               ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.print("\u001B[45m" + "               " + "\u001B[40m" + " " + "\u001B[0m");
+        System.out.print(" 2 - FUGIR                ");
+        System.out.println("\u001B[45m"  + "\u001B[40m" + " " + "\u001B[45m" + "               " + "\u001B[0m");
+        System.out.println("\u001B[45m"  + "               " + "\u001B[40m" + "                            " + "\u001B[45m" +"               " + "\u001B[0m");
+        System.out.println("    \u001B[45m"  + "                                                  " + "\u001B[0m    ");
+
+    }
+
+    public void padronizarNome(char[] nome_char, char[] name_char, String rival, String player){
+        //pokemon rival - os comandos abaixo serve para o nome ficar "padrao"
+        Arrays.fill(nome_char, ' ');
+        int copia = Math.min(rival.length(), nome_char.length);
+
+        for (int i = 0; i < copia; i++) {
+            nome_char[i] = rival.charAt(i);
+        }
+
+        //seu pokemon - os comandos abaixo serve para o nome ficar "padrao"
+        Arrays.fill(name_char, ' ');
+        copia = Math.min(player.length(), name_char.length);
+
+        for (int i = 0; i < copia; i++) {
+            name_char[i] = player.charAt(i);
+        }
+    }
+
 }
+
+
+
