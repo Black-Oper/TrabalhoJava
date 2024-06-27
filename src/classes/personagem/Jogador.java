@@ -10,6 +10,10 @@ public class Jogador extends Personagem implements Serializable {
     private final String sprite = "🧢";
     private List<Pokemon> pokemonList;
 
+    public Jogador(Jogador jogador) {
+        super(jogador.getPosx(), jogador.getPosy());
+        this.pokemonList = jogador.pokemonList;
+    }
     public Jogador(int posx, int posy) {
         super(posx, posy);
         this.pokemonList = new ArrayList<>();

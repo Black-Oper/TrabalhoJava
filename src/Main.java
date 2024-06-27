@@ -19,6 +19,10 @@ public class Main {
         Jogador jogador = new Jogador(6, 7);
         List<Porta> portas = new ArrayList<>();
 
+        if (EstadoJogo.arquivoNaoExiste()) {
+            EstadoJogo.criarArquivo();
+        }
+
         Tabuleiro originalTabuleiro = new Tabuleiro();
 
         Movimentacao.Posicao posicao = new Movimentacao.Posicao(jogador, portas, tabuleiro);
@@ -26,12 +30,6 @@ public class Main {
         Thread movimentoThread = new Thread(movimento);
         movimentoThread.start();
 
-        // Verifica a existência do arquivo, caso não exista, o cria.
-        if (!EstadoJogo.verificarArquivo()) {
-            EstadoJogo.criarArquivo();
-        }
-
-        EstadoJogo dadosProgresso = new EstadoJogo(EstadoJogo.carregarProgreso());
 
         do {
             clearScreen();
@@ -60,7 +58,9 @@ public class Main {
                     movimento.setDirecao(Movimentacao.Direcao.PARAR);
                     break;
                 case "S":
-                    dadosProgresso.salvarProgresso(jogador);
+                    EstadoJogo.salvarProgresso(jogador);
+                    System.out.println("Salvando seu progresso, aguarde um pouquinho.");
+                break;
                 default:
                     System.out.println("Movimento inválido! Tente novamente.");
             }
