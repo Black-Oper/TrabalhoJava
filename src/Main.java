@@ -16,11 +16,23 @@ public class Main {
         Scanner leitor = new Scanner(System.in);
 
         Tabuleiro tabuleiro = new Tabuleiro();
-        Jogador jogador = new Jogador(6, 7);
+        Jogador jogador;
         List<Porta> portas = new ArrayList<>();
 
+        /* Bifurca o programa , em um dos caminhos possíveis o arquivo não existe e então o jogador é posicionado na posição (6,7).
+        No outro cenário o jogador é criado com base nos dados vindos diretamente do arquivo salvar.dat.
+        */
+        Jogador progresso;
         if (EstadoJogo.arquivoNaoExiste()) {
             EstadoJogo.criarArquivo();
+            jogador = new Jogador(6, 7);
+        } else {
+            progresso = EstadoJogo.carregarProgresso();
+            if (progresso != null) {
+                jogador = progresso;
+            } else {
+                jogador = new Jogador(6, 7);
+            }
         }
 
         Tabuleiro originalTabuleiro = new Tabuleiro();
@@ -38,7 +50,7 @@ public class Main {
             originalTabuleiro.colisaoPorta(jogador);
             originalTabuleiro.colisaoEscolherPokemon(jogador);
 
-            System.out.println("Digite a direção (w para cima, s para baixo, a para esquerda, d para direita, q para parar): ");
+            System.out.println("Digite a direção (w para cima, s para baixo, a para esquerda, d para direita, q para parar, S para salvar seu progresso): ");
             String entrada = leitor.nextLine();
 
             switch (entrada) {

@@ -5,15 +5,11 @@ import java.util.*;
 
 import classes.pokemon.Pokemon;
 
-public class Jogador extends Personagem implements Serializable {
+public class Jogador extends Personagem {
 
     private final String sprite = "🧢";
     private List<Pokemon> pokemonList;
 
-    public Jogador(Jogador jogador) {
-        super(jogador.getPosx(), jogador.getPosy());
-        this.pokemonList = jogador.pokemonList;
-    }
     public Jogador(int posx, int posy) {
         super(posx, posy);
         this.pokemonList = new ArrayList<>();

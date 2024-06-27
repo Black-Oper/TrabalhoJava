@@ -20,9 +20,9 @@ public class EstadoJogo implements Serializable {
         }
     }
 
-    static Object carregarProgresso() {
+    static Jogador carregarProgresso() {
         try (ObjectInputStream dadosProgresso = new ObjectInputStream(new FileInputStream(nomeArquivoSave))) {
-            return dadosProgresso.readObject();
+            return (Jogador) dadosProgresso.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro: Não foi possível carregar seu progresso feito.");
             return null;
@@ -30,7 +30,7 @@ public class EstadoJogo implements Serializable {
     }
 
     static void salvarProgresso(Jogador jogador) {
-        try (ObjectOutputStream dadosProgresso = new ObjectOutputStream(new FileOutputStream(nomeArquivoSave, false))) {
+        try (ObjectOutputStream dadosProgresso = new ObjectOutputStream(new FileOutputStream(nomeArquivoSave))) {
             dadosProgresso.writeObject(jogador);
         } catch (IOException e) {
             System.out.println("Erro: Não foi possível recuperar seu progresso.");
