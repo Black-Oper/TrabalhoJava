@@ -54,7 +54,6 @@ public class Main {
                     break;
                 default:
                     System.out.println("Movimento inválido! Tente novamente.");
-            }
-        } while (true);
+            }        } while (true);
     }
 }
