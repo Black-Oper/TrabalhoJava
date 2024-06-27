@@ -10,6 +10,7 @@ public class PokemonEscolher extends Objetos{
 
     private String sprite;
     private Pokemon pokemon;
+    private int key;
 
     public PokemonEscolher(int posx, int posy, String sprite, Pokemon pokemon) {
         super(true);
@@ -35,6 +36,9 @@ public class PokemonEscolher extends Objetos{
         return pokemon;
     }
 
-   
+    @Override
+    public int getKey() {
+        return key;
+    }
     
 }

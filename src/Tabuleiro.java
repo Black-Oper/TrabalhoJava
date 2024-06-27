@@ -20,7 +20,7 @@ public class Tabuleiro {
         tabuleiro = new Elemento[100][100];
         for (int i = 0; i < tabuleiro.length; i++) {
             for (int j = 0; j < tabuleiro[i].length; j++) {
-                tabuleiro[i][j] = new Chao("\u001B[42m"  + "🟩" + "\u001B[0m");
+                tabuleiro[i][j] = new Chao("\u001B[42m"  + "🟩" + "\u001B[0m", 1);
             }
         }
 
@@ -516,7 +516,7 @@ public class Tabuleiro {
     // casa1 - cidade1 - interior
     for (int i = 5; i < 10; i++) {
         for (int j = 5; j < 11; j++) {
-            tabuleiro[i][j] = new Chao("\u001B[43m" + "\u001B[33m"  + "🟨" + "\u001B[0m");
+            tabuleiro[i][j] = new Chao("\u001B[43m" + "\u001B[33m"  + "🟨" + "\u001B[0m", 6);
         }
     }
     tabuleiro[6][6] = new Parede("\u001B[43m" + "\u001B[33m"  + "🍁" + "\u001B[0m");
@@ -544,7 +544,7 @@ public class Tabuleiro {
     // laboratorio - cidade1 - interior
     for (int i = 5; i < 16; i++) {
         for (int j = 16; j < 23; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[16][19] = new Porta(81, 80);
@@ -563,7 +563,7 @@ public class Tabuleiro {
     // pokemoncenter - cidade1 - interior
     for (int i = 25; i <= 27; i++) {
         for (int j = 5; j <= 7; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[28][6] = new Porta(93, 92);
@@ -583,7 +583,7 @@ public class Tabuleiro {
     // casa1 - cidade2 - interior
     for (int i = 5; i <= 9; i++) {
         for (int j = 28; j <= 33; j++) {
-            tabuleiro[i][j] = new Chao("\u001B[48;5;94m" + "🟫" + "\u001B[0m");
+            tabuleiro[i][j] = new Chao("\u001B[48;5;94m" + "🟫" + "\u001B[0m", 0);
         }
     }
     //tabuleiro[6][6] = new Parede("\u001B[43m" + "\u001B[33m"  + "🍁" + "\u001B[0m");
@@ -604,7 +604,7 @@ public class Tabuleiro {
     // casa2 - cidade2 - interior
     for (int i = 5; i <= 9; i++) {
         for (int j = 39; j <= 44; j++) {
-            tabuleiro[i][j] = new Chao("\u001B[48;5;94m" + "🟫" + "\u001B[0m");
+            tabuleiro[i][j] = new Chao("\u001B[48;5;94m" + "🟫" + "\u001B[0m", 0);
         }
     }
     //tabuleiro[6][6] = new Parede("\u001B[43m" + "\u001B[33m"  + "🍁" + "\u001B[0m");
@@ -632,7 +632,7 @@ public class Tabuleiro {
     // laboratorio - cidade2 - interior
     for (int i = 5; i <= 11; i++) {
         for (int j = 50; j <= 56; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[12][53] = new Porta(76, 30);
@@ -652,7 +652,7 @@ public class Tabuleiro {
     // pokemoncenter - cidade2 - interior
     for (int i = 25; i <= 27; i++) {
         for (int j = 13; j <= 15; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[28][14] = new Porta(89, 49);
@@ -672,7 +672,7 @@ public class Tabuleiro {
     // casa1 - cidade3 - interior
     for (int i = 5; i <= 9; i++) {
         for (int j = 62; j <= 67; j++) {
-            tabuleiro[i][j] = new Chao("\u001B[45m" + "🟪" + "\u001B[0m");
+            tabuleiro[i][j] = new Chao("\u001B[45m" + "🟪" + "\u001B[0m", 8);
         }
     }
     //tabuleiro[6][6] = new Parede("\u001B[43m" + "\u001B[33m"  + "🍁" + "\u001B[0m");
@@ -712,7 +712,7 @@ public class Tabuleiro {
     // laboratorio - cidade3 - interior
     for (int i = 5; i <= 10; i++) {
         for (int j = 73; j <= 81; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[11][77] = new Porta(47, 12);
@@ -732,7 +732,7 @@ public class Tabuleiro {
     // pokemoncenter - cidade3 - interior
     for (int i = 25; i <= 27; i++) {
         for (int j = 21; j <= 23; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[28][22] = new Porta(51, 6);
@@ -789,7 +789,7 @@ public class Tabuleiro {
     // laboratorio - cidade4 - interior
     for (int i = 5; i <= 13; i++) {
         for (int j = 87; j <= 93; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[14][90] = new Porta(58, 39);
@@ -809,7 +809,7 @@ public class Tabuleiro {
     // pokemoncenter - cidade4 - interior
     for (int i = 25; i <= 27; i++) {
         for (int j = 29; j <= 31; j++) {
-            tabuleiro[i][j] = new Chao("🔳");
+            tabuleiro[i][j] = new Chao("🔳", 5);
         }
     }
     tabuleiro[28][30] = new Porta(56, 50);
@@ -1333,9 +1333,9 @@ public class Tabuleiro {
         Pokemon squirtle = new Squirtle();
         Pokemon charmander = new Charmander();
 
-        tabuleiro[6][17] = new PokemonEscolher(6, 17, "🌱", bullbassaur);
-        tabuleiro[6][19] = new PokemonEscolher(6, 19, "💧", squirtle);
-        tabuleiro[6][21] = new PokemonEscolher(6, 21, "🔥", charmander);
+        tabuleiro[6][17] = new PokemonEscolher(6, 17, "🔴", bullbassaur);
+        tabuleiro[6][19] = new PokemonEscolher(6, 19,"🔴", squirtle);
+        tabuleiro[6][21] = new PokemonEscolher(6, 21, "🔴", charmander);
     }
 
     /*public void imprimirTabuleiro(Jogador jogador) {
@@ -1360,7 +1360,48 @@ public class Tabuleiro {
          for (int i = 0; i < tabuleiro.length; i++) {
              for (int j = 0; j < tabuleiro[i].length; j++) {
                  if (i == jogador.getPosx() && j == jogador.getPosy()) {
-                     System.out.print(jogador.getSprite());
+                     switch(tabuleiro[i][j].getKey()){ //vai puxar essa função e vai pintar o fundo do jogador
+
+                         case 0: //neutro
+                             System.out.print(jogador.getSprite());
+                             break;
+
+                         case 1: //Green
+                             System.out.print("\u001B[42m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         case 2://White
+                             System.out.print("\u001B[47m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         case 3://Red
+                             System.out.print("\u001B[41m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         case 4://Blue
+                             System.out.print("\u001B[44m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         case 5://Black
+                             System.out.print("\u001B[40m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         case 6://Yellow
+                             System.out.print("\u001B[43m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         case 7://Cyan
+                             System.out.print("\u001B[46m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         case 8://Purple
+                             System.out.print("\u001B[45m" + jogador.getSprite() + "\u001B[0m");
+                             break;
+
+                         default:
+                             break;
+
+                     }
                  } else {
                      System.out.print(tabuleiro[i][j].getSprite());
                  }
@@ -1397,9 +1438,9 @@ public class Tabuleiro {
             int escolhaPokemon = pokemonEscolher.escolherPokemon();
             if (escolhaPokemon == 1) {
                 jogador.getPokemon().add(pokemonEscolher.getPokemon());
-                tabuleiro[6][17] = new Chao("🔳");
-                tabuleiro[6][19] = new Chao("🔳");
-                tabuleiro[6][21] = new Chao("🔳");
+                tabuleiro[6][17] = new Chao("🔳", 5);
+                tabuleiro[6][19] = new Chao("🔳", 5);
+                tabuleiro[6][21] = new Chao("🔳", 5);
             } else {
                 jogador.setPosx(jogador.getPosx() + 1);
             }
