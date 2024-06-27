@@ -2,7 +2,7 @@ import classes.personagem.Jogador;
 
 import java.io.*;
 
-public class EstadoJogo implements Serializable {
+public abstract class EstadoJogo implements Serializable {
     static final String nomeArquivoSave = "salvar.dat";
     static final File arquivoSave = new File(nomeArquivoSave);
 
