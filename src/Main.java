@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import classes.personagem.Jogador;
+import classes.cenario.HudInicial;
 import classes.cenario.Porta;
 
 public class Main {
@@ -14,6 +15,28 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
+
+        HudInicial hudInicial = new HudInicial();
+        hudInicial.menuDashboard();
+
+        int escolha = leitor.nextInt();
+        leitor.nextLine(); // Consome a nova linha após o número
+
+        if (escolha == 3) {
+            System.out.println("Saindo do jogo...");
+            System.exit(0);
+        } else if (escolha != 1 && escolha != 2) {
+            System.out.println("Opção inválida!");
+            System.exit(0);
+        }
+
+        if (escolha == 3) {
+            System.out.println("Saindo do jogo...");
+            System.exit(0);
+        } else if (escolha != 1 && escolha != 2) {
+            System.out.println("Opção inválida!");
+            System.exit(0);
+        }
 
         Tabuleiro tabuleiro = new Tabuleiro();
         Jogador jogador = new Jogador(6, 7);
@@ -27,33 +50,55 @@ public class Main {
         movimentoThread.start();
 
         do {
-            clearScreen();
-            tabuleiro.imprimirTabuleiro(jogador);
-            originalTabuleiro.verificarGrama(jogador);
-            originalTabuleiro.colisaoPorta(jogador);
-            originalTabuleiro.colisaoEscolherPokemon(jogador);
 
-            System.out.println("Digite a direção (w para cima, s para baixo, a para esquerda, d para direita, q para parar): ");
+            // System.out.println("Digite a direção (w para cima, s para baixo, a para
+            // esquerda, d para direita, q para parar): ");
             String entrada = leitor.nextLine();
 
             switch (entrada) {
                 case "w":
-                    movimento.setDirecao(Movimentacao.Direcao.CIMA);
+                    // movimento.setDirecao(Movimentacao.Direcao.CIMA);
+                    if (tabuleiro.tabuleiro[jogador.getPosx() - 1][jogador.getPosy()].isAndavel()) {
+                        jogador.setPosx(jogador.getPosx() - 1);
+                    }
                     break;
                 case "s":
-                    movimento.setDirecao(Movimentacao.Direcao.BAIXO);
+                    // movimento.setDirecao(Movimentacao.Direcao.BAIXO);
+                    if (tabuleiro.tabuleiro[jogador.getPosx() + 1][jogador.getPosy()].isAndavel()) {
+                        jogador.setPosx(jogador.getPosx() + 1);
+                    }
                     break;
                 case "a":
-                    movimento.setDirecao(Movimentacao.Direcao.ESQUERDA);
+                    // movimento.setDirecao(Movimentacao.Direcao.ESQUERDA);
+                    if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() - 1].isAndavel()) {
+                        jogador.setPosy(jogador.getPosy() - 1);
+                    }
                     break;
                 case "d":
-                    movimento.setDirecao(Movimentacao.Direcao.DIREITA);
+                    // movimento.setDirecao(Movimentacao.Direcao.DIREITA);
+                    if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() + 1].isAndavel()) {
+                        jogador.setPosy(jogador.getPosy() + 1);
+                    }
                     break;
-                case "q":
-                    movimento.setDirecao(Movimentacao.Direcao.PARAR);
+                case "m":
+                    jogador.getMochila().acessarMochila(jogador);
                     break;
+                case "p":
+                    tabuleiro.acessarPokemon(jogador);
+                    break;
+                // case "q":
+                // movimento.setDirecao(Movimentacao.Direcao.PARAR);
+                // break;
                 default:
                     System.out.println("Movimento inválido! Tente novamente.");
-            }        } while (true);
+            }
+            clearScreen();
+            originalTabuleiro.colisaoTreinador(jogador);
+            originalTabuleiro.verificarGrama(jogador);
+            originalTabuleiro.colisaoPorta(jogador);
+            originalTabuleiro.colisaoEscolherPokemon(jogador);
+            originalTabuleiro.imprimirTabuleiro(jogador);
+            originalTabuleiro.acessarCuradorECurarPokemons(jogador);
+        } while (true);
     }
 }
