@@ -3,7 +3,9 @@ package classes.pokemon;
 import classes.personagem.Jogador;
 import classes.pokemon.listaataques.Ataque;
 
-public abstract class Pokemon {
+import java.io.Serializable;
+
+public abstract class Pokemon implements Serializable {
     private String nome;
     private String tipo;
     private Ataque ataque;

@@ -1,10 +1,11 @@
 package classes.item;
 
+import java.io.Serializable;
 import java.util.*;
 
 import classes.personagem.Jogador;
 
-public class Mochila {
+public class Mochila implements Serializable {
     
     private List<Item> itens;
 

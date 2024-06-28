@@ -32,8 +32,9 @@ public abstract class EstadoJogo implements Serializable {
     static void salvarProgresso(Jogador jogador) {
         try (ObjectOutputStream dadosProgresso = new ObjectOutputStream(new FileOutputStream(nomeArquivoSave))) {
             dadosProgresso.writeObject(jogador);
+            System.out.println("Salvado com sucesso!");
         } catch (IOException e) {
-            System.out.println("Erro: Não foi possível recuperar seu progresso.");
+            System.out.println("Erro: Não foi possível salvar seu progresso.");
         }
     }
 }

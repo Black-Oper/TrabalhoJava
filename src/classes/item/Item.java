@@ -2,7 +2,9 @@ package classes.item;
 
 import classes.personagem.Jogador;
 
-public class Item{
+import java.io.Serializable;
+
+public class Item implements Serializable {
     
     private String nome;
     private String descricao;
