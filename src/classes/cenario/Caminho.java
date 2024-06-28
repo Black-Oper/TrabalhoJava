@@ -3,6 +3,7 @@ package classes.cenario;
 public class Caminho extends Objetos{
 
     private String sprite;
+    private int key;
 
     public Caminho(){
         super(true);
@@ -12,5 +13,11 @@ public class Caminho extends Objetos{
     @Override
     public String getSprite() {
         return sprite;
+
+    }
+
+    @Override
+    public int getKey() {
+        return 1;
     }
 }

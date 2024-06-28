@@ -5,6 +5,7 @@ public class Porta extends Objetos{
     private String sprite;
     private int jposx;
     private int jposy;
+    private int key;
 
     public Porta(int jposx, int jposy) {
         super(true);
@@ -25,4 +26,10 @@ public class Porta extends Objetos{
     public int getJposy() {
         return jposy;
     }
+
+    @Override
+    public int getKey() {
+        return 2;
+    }
+
 }

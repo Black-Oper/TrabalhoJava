@@ -2,11 +2,12 @@ package classes.pokemon.pokemonList;
 
 import classes.personagem.Jogador;
 import classes.pokemon.PokemonPlanta;
+import classes.pokemon.listaataques.RazorLeaf;
 
-public class Ivysaur extends PokemonPlanta{
+public class Ivysaur extends PokemonPlanta implements IPokemon{
 
     public Ivysaur() {
-        super("Ivysaur", "Seed Bomb", 1, 7, 12, 9);
+        super("Ivysaur", new RazorLeaf(), 1, 7, 12, 12);
     }
     
     public void evoluir(Jogador jogador) {
