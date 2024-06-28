@@ -2,7 +2,9 @@ package classes.pokemon.listaataques;
 
 import classes.pokemon.Pokemon;
 
-public class Ataque {
+import java.io.Serializable;
+
+public class Ataque implements Serializable {
     private String nome;
     private int dano;
 

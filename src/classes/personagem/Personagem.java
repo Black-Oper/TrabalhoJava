@@ -2,7 +2,10 @@ package classes.personagem;
 
 import classes.cenario.Elemento;
 
-public abstract class Personagem extends Elemento{
+import java.io.Serializable;
+
+
+public abstract class Personagem extends Elemento implements Serializable {
     
     private int posx;
     private int posy;

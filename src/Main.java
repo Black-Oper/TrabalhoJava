@@ -16,18 +16,25 @@ public class Main {
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
 
+        if (EstadoJogo.arquivoNaoExiste()) {
+            EstadoJogo.criarArquivo();
+        }
+
         HudInicial hudInicial = new HudInicial();
         hudInicial.menuDashboard();
+
 
         int escolha = leitor.nextInt();
         leitor.nextLine(); // Consome a nova linha após o número
 
-        if (escolha == 3) {
-            System.out.println("Saindo do jogo...");
-            System.exit(0);
-        } else if (escolha != 1 && escolha != 2) {
-            System.out.println("Opção inválida!");
-            System.exit(0);
+        Jogador jogador = new Jogador(6, 7);
+
+        if (escolha == 2) {
+            Jogador progresso;
+            progresso = EstadoJogo.carregarProgresso();
+            if (progresso != null) {
+                jogador = progresso;
+            }
         }
 
         if (escolha == 3) {
@@ -39,7 +46,6 @@ public class Main {
         }
 
         Tabuleiro tabuleiro = new Tabuleiro();
-        Jogador jogador = new Jogador(6, 7);
         List<Porta> portas = new ArrayList<>();
 
         Tabuleiro originalTabuleiro = new Tabuleiro();
@@ -86,6 +92,10 @@ public class Main {
                 case "p":
                     tabuleiro.acessarPokemon(jogador);
                     break;
+                case "S":
+                    System.out.println("Salvando seu progresso...");
+                    EstadoJogo.salvarProgresso(jogador);
+                break;
                 // case "q":
                 // movimento.setDirecao(Movimentacao.Direcao.PARAR);
                 // break;

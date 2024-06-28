@@ -1,19 +1,19 @@
 package classes.personagem;
 
+import java.io.Serializable;
 import java.util.*;
 
 import classes.item.Mochila;
 import classes.pokemon.Pokemon;
 
-public class Jogador extends Personagem{
+public class Jogador extends Personagem {
 
-    private String sprite;
+    private final String sprite = "🧢";
     private List<Pokemon> pokemonList;
     private Mochila mochila;
 
     public Jogador(int posx, int posy) {
         super(posx, posy);
-        this.sprite = "🧢";
         this.pokemonList = new ArrayList<>();
         this.mochila = new Mochila();
     }
