@@ -12,6 +12,9 @@ import classes.personagem.Jogador;
 import classes.pokemon.Pokemon;
 import classes.pokemon.pokemonList.Bulbassaur;
 import classes.pokemon.pokemonList.Charmander;
+import classes.pokemon.pokemonList.Machop;
+import classes.pokemon.pokemonList.Pidgey;
+import classes.pokemon.pokemonList.Pikachu;
 import classes.pokemon.pokemonList.Squirtle;
 
 import java.util.List;
@@ -362,9 +365,12 @@ public class Tabuleiro {
         pokemonList.add(new Bulbassaur());
         pokemonList.add(new Charmander());
         pokemonList.add(new Squirtle());
+        pokemonList.add(new Pikachu());
+        pokemonList.add(new Pidgey());
+        pokemonList.add(new Machop());
 
         Random random = new Random();
-        int number = random.nextInt(3);
+        int number = random.nextInt(6);
         Pokemon pokemon = pokemonList.get(number);
 
         System.out.println("Um pokemon selvagem apareceu!");

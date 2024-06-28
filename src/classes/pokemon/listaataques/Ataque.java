@@ -1,6 +1,5 @@
 package classes.pokemon.listaataques;
 
-import classes.personagem.Jogador;
 import classes.pokemon.Pokemon;
 
 public class Ataque {
