@@ -101,4 +101,8 @@ public abstract class Pokemon implements Serializable {
     public void evoluir(Jogador jogador) {
         // evoluir pokemon
     }
+
+    public String nomeColor(){
+        return "\u001B[33m" + nome + "\u001B[0m";
+    }
 }
