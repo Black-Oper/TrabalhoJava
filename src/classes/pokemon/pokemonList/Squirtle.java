@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonAgua;
 import classes.pokemon.listaataques.WaterGun;
 
-public class Squirtle extends PokemonAgua{
+public class Squirtle extends PokemonAgua implements IPokemon{
 
     public Squirtle() {
         super("Squirtle", new WaterGun(), 5, 10, 10, 10);

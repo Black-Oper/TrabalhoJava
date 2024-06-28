@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonFogo;
 import classes.pokemon.listaataques.Ember;
 
-public class Charmander extends PokemonFogo{
+public class Charmander extends PokemonFogo implements IPokemon{
 
     public Charmander() {
         super("Charmander", new Ember(), 5, 7, 8, 8);
