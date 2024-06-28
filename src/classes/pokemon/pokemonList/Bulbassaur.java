@@ -4,11 +4,12 @@ import java.util.List;
 
 import classes.personagem.Jogador;
 import classes.pokemon.PokemonPlanta;
+import classes.pokemon.listaataques.RazorLeaf;
 
-public class Bulbassaur extends PokemonPlanta{
+public class Bulbassaur extends PokemonPlanta implements IPokemon{
 
     public Bulbassaur() {
-        super("Bulbassaur", "Razor Leaf", 5, 5, 10, 7);
+        super("Bulbassaur", new RazorLeaf(), 5, 5, 10, 10);
     }
     
     public void evoluir(Jogador jogador) {
