@@ -61,46 +61,50 @@ public class Main {
             // esquerda, d para direita, q para parar): ");
             String entrada = leitor.nextLine();
 
-            switch (entrada) {
-                case "w":
-                    // movimento.setDirecao(Movimentacao.Direcao.CIMA);
-                    if (tabuleiro.tabuleiro[jogador.getPosx() - 1][jogador.getPosy()].isAndavel()) {
-                        jogador.setPosx(jogador.getPosx() - 1);
-                    }
-                    break;
-                case "s":
-                    // movimento.setDirecao(Movimentacao.Direcao.BAIXO);
-                    if (tabuleiro.tabuleiro[jogador.getPosx() + 1][jogador.getPosy()].isAndavel()) {
-                        jogador.setPosx(jogador.getPosx() + 1);
-                    }
-                    break;
-                case "a":
-                    // movimento.setDirecao(Movimentacao.Direcao.ESQUERDA);
-                    if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() - 1].isAndavel()) {
-                        jogador.setPosy(jogador.getPosy() - 1);
-                    }
-                    break;
-                case "d":
-                    // movimento.setDirecao(Movimentacao.Direcao.DIREITA);
-                    if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() + 1].isAndavel()) {
-                        jogador.setPosy(jogador.getPosy() + 1);
-                    }
-                    break;
-                case "m":
-                    jogador.getMochila().acessarMochila(jogador);
-                    break;
-                case "p":
-                    tabuleiro.acessarPokemon(jogador);
-                    break;
-                case "S":
-                    System.out.println("Salvando seu progresso...");
-                    EstadoJogo.salvarProgresso(jogador);
-                break;
-                // case "q":
-                // movimento.setDirecao(Movimentacao.Direcao.PARAR);
-                // break;
-                default:
-                    System.out.println("Movimento inválido! Tente novamente.");
+            try {
+                switch (entrada) {
+                    case "w":
+                        // movimento.setDirecao(Movimentacao.Direcao.CIMA);
+                        if (tabuleiro.tabuleiro[jogador.getPosx() - 1][jogador.getPosy()].isAndavel()) {
+                            jogador.setPosx(jogador.getPosx() - 1);
+                        }
+                        break;
+                    case "s":
+                        // movimento.setDirecao(Movimentacao.Direcao.BAIXO);
+                        if (tabuleiro.tabuleiro[jogador.getPosx() + 1][jogador.getPosy()].isAndavel()) {
+                            jogador.setPosx(jogador.getPosx() + 1);
+                        }
+                        break;
+                    case "a":
+                        // movimento.setDirecao(Movimentacao.Direcao.ESQUERDA);
+                        if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() - 1].isAndavel()) {
+                            jogador.setPosy(jogador.getPosy() - 1);
+                        }
+                        break;
+                    case "d":
+                        // movimento.setDirecao(Movimentacao.Direcao.DIREITA);
+                        if (tabuleiro.tabuleiro[jogador.getPosx()][jogador.getPosy() + 1].isAndavel()) {
+                            jogador.setPosy(jogador.getPosy() + 1);
+                        }
+                        break;
+                    case "m":
+                        jogador.getMochila().acessarMochila(jogador);
+                        break;
+                    case "p":
+                        tabuleiro.acessarPokemon(jogador);
+                        break;
+                    case "S":
+                        System.out.println("Salvando seu progresso...");
+                        EstadoJogo.salvarProgresso(jogador);
+                        break;
+                    // case "q":
+                    // movimento.setDirecao(Movimentacao.Direcao.PARAR);
+                    // break;
+                    default:
+                        System.out.println("Movimento inválido! Tente novamente.");
+                }
+            } catch (Exception e) {
+                System.out.println("Tecla inválida");
             }
             clearScreen();
             originalTabuleiro.colisaoTreinador(jogador);
