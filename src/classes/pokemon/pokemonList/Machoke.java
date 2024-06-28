@@ -4,8 +4,8 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonLutador;
 import classes.pokemon.listaataques.Ataque;
 
-public class Machoke extends PokemonLutador {
-
+public class Machoke extends PokemonLutador implements IPokemon{
+ 
     public Machoke() {
         super("Machoke", new Ataque("Ataque", 7), 28, 10, 10, 10);
     }

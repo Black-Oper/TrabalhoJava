@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonPlanta;
 import classes.pokemon.listaataques.RazorLeaf;
 
-public class Caterpie extends PokemonPlanta {
+public class Caterpie extends PokemonPlanta implements IPokemon{
 
     public Caterpie() {
         super("Caterpie", new RazorLeaf(), 5, 5, 7, 7);

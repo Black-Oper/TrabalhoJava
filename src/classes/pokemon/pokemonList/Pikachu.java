@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonEletrico;
 import classes.pokemon.listaataques.Ataque;
 
-public class Pikachu extends PokemonEletrico {
+public class Pikachu extends PokemonEletrico implements IPokemon{
 
     public Pikachu() {
         super("Pikachu", new Ataque("Bola Elétrica", 7), 12, 10, 9, 9);

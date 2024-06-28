@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonLutador;
 import classes.pokemon.listaataques.Ataque;
 
-public class Machop extends PokemonLutador {
+public class Machop extends PokemonLutador implements IPokemon{
 
     public Machop() {
         super("Machop", new Ataque("Ataque", 5), 5, 5, 7, 7);

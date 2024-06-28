@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonPlanta;
 import classes.pokemon.listaataques.RazorLeaf;
 
-public class Metapod extends PokemonPlanta {
+public class Metapod extends PokemonPlanta implements IPokemon{
 
     public Metapod() {
         super("Metapod", new RazorLeaf(), 7, 7, 10, 10);

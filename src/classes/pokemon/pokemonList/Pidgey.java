@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonVoador;
 import classes.pokemon.listaataques.Ataque;
 
-public class Pidgey extends PokemonVoador {
+public class Pidgey extends PokemonVoador implements IPokemon{
 
     public Pidgey() {
         super("Pidgey", new Ataque("Investida", 5), 5, 8, 7, 7);
