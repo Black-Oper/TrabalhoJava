@@ -3,10 +3,9 @@ package classes.cenario;
 public class Caminho3 extends Objetos{
 
     private String sprite;
-<<<<<<< HEAD
-=======
+
     private int key;
->>>>>>> main
+
 
     public Caminho3(){
         super(true);
@@ -17,13 +16,11 @@ public class Caminho3 extends Objetos{
     public String getSprite() {
         return sprite;
     }
-<<<<<<< HEAD
-=======
+
 
     @Override
     public int getKey() {
         return 1;
     }
 
->>>>>>> main
 }
