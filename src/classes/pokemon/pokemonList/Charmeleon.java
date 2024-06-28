@@ -4,7 +4,7 @@ import classes.personagem.Jogador;
 import classes.pokemon.PokemonFogo;
 import classes.pokemon.listaataques.Ember;
 
-public class Charmeleon extends PokemonFogo{
+public class Charmeleon extends PokemonFogo implements IPokemon{
 
     public Charmeleon() {
         super("Charmeleon", new Ember(), 16, 8, 11, 11);
